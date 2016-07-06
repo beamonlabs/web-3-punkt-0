@@ -1,27 +1,27 @@
 <?php
 /**
-* Plugin Name: List Colleagues Widget
-* Description: A widget to list Beamon colleagues
+* Plugin Name: List Projects Widget
+* Description: A widget to list Beamon projects
 * Version: 1.0
 * Author: Alexandra Vasmatzis
 **/
 ?>
 
 <?php
-class List_Colleagues_Widget extends WP_Widget 
+class List_Projects_Widget extends WP_Widget 
 {
     function __construct()
     {
         parent::__construct(
 
         // Base ID
-        'list_colleagues_widget',
+        'list_projects_widget',
 
         // Name
-        __('List Beamon Colleagues', 'Beamon'),
+        __('List Beamon Projects', 'Beamon'),
 
         // Options
-        array('description' => __('Lists colleagues found in csv file - should be changed to load the information from google spreadsheet'))
+        array('description' => __('Lists projects found in the specific csv file'))
         );
     }
 
@@ -48,16 +48,17 @@ class List_Colleagues_Widget extends WP_Widget
         <p>
             <label for="<?php echo $this->get_field_id('select'); ?>"><?php _e('Select page', 'wp_widget_plugin'); ?></label><br/>          
             <select name="<?php echo $this->get_field_name('select'); ?>" id="<?php echo $this->get_field_id('select'); ?>">
+
             <?php
-            $pages = get_pages();
-            foreach ($pages as $page) 
-            {
-                $option = '<option value="' . $page->ID . '"';
-                $option .= selected($instance['select'], $page->ID);
-                $option .= '>' . $page->post_title;
-                $option .= '</option>';
-                echo $option;
-            }
+                $pages = get_pages();
+                foreach ($pages as $page) 
+                {
+                    $option = '<option value="' . $page->ID . '"';
+                    $option .= selected($instance['select'], $page->ID);
+                    $option .= '>' . $page->post_title;
+                    $option .= '</option>';
+                    echo $option;
+                }
             ?>
             </select>
         </p>
@@ -68,9 +69,9 @@ class List_Colleagues_Widget extends WP_Widget
             <input type="text" name="<?php echo $this->get_field_name('title'); ?>" id="<?php echo $this->get_field_id('title'); ?>" value="<?php echo $instance['title']?>" style="width: 100%">
         </p>
             
-        <!-- Let admin choose subtitle (not displayed on start page) -->
+        <!-- Let admin choose sub title (only for other pages than start page) -->
         <p>
-            <label for="<?php echo $this->get_field_id('sub_tile'); ?>"><?php _e('Subtitle (not displayed on start page)'); ?></label><br/>
+            <label for="<?php echo $this->get_field_id('sub_tile'); ?>"><?php _e('Sub title (not for start page)'); ?></label><br/>
             <textarea name="<?php echo $this->get_field_name('sub_title'); ?>" id="<?php echo $this->get_field_id('sub_title'); ?>" rows="5" style="width: 100%"><?php echo $instance['sub_title']?></textarea>
         </p>
 
@@ -96,24 +97,24 @@ class List_Colleagues_Widget extends WP_Widget
             if(is_home() || is_front_page()) { $isStartPage = TRUE; } else { $isStartPage = FALSE; }
 
             // Is needed if the path includes swedish characters
-            $file_path_conv = iconv('utf-8', 'cp1252', 'C:\Users\Beamon People gäst\Documents\My Web Sites\web3punkt0\wp-content\plugins\colleagues\csv\colleagues.csv');
+            $file_path_conv = iconv('utf-8', 'cp1252', 'C:\Users\Beamon People gäst\Documents\My Web Sites\web3punkt0\wp-content\plugins\projects\csv\projects.csv');
 
             if (file_exists($file_path_conv))
             {
-                echo "<div id='colleague_intro_container'>";
+                echo '<div id="project_intro_container">';
 
                 if ($isStartPage)
                 {
-                    echo '<link href="' . plugin_dir_url( __FILE__ ) . 'css/colleagues_small.css" rel="stylesheet" type="text/css" />';
-                    echo '<h2 id="colleague_title">' . $instance['title'] . '</h2><a id="colleague_link" title="Medarbetare" href="/Beamon People/">Se alla Beamon People</a>';
+                    echo '<link href="' . plugin_dir_url( __FILE__ ) . 'css/projects_small.css" rel="stylesheet" type="text/css" />';
+                    echo '<div id="project_text_container"><h2 id="project_title">' . $instance["title"] . '</h2><p id="project_text">' . $instance["sub_title"] . '</p><a id="project_link" title="Projekt" href="/Projekt/">Läs om våra projekt</a></div>';
                 }
                 else
                 {
-                    echo '<link href="' . plugin_dir_url( __FILE__ ) . 'css/colleagues_large.css" rel="stylesheet" type="text/css" />';
-                    echo '<h1 id="colleague_title">' . $instance["title"] . '</h1><p id="colleague_text">' . $instance["sub_title"] . '</p>';
+                    echo '<link href="' . plugin_dir_url( __FILE__ ) . 'css/projects_large.css" rel="stylesheet" type="text/css" />';
+                    echo '<h1 id="project_title">' . $instance["title"] . '</h1><p id="project_text">' . $instance["sub_title"] . '</p>';
                 }
 
-                echo '<div id="colleague_container"><table>';
+                echo '<div id="project_container"><table>';
 
                 if (($file = fopen($file_path_conv, "r")) !== FALSE)
                 {
@@ -130,26 +131,26 @@ class List_Colleagues_Widget extends WP_Widget
 
                     if($isStartPage)
                     {
-                        // Get 12 random colleagues
-                        $colleagues = array_rand($data, 12);  
-                        foreach($colleagues as $colleague)
+                        // Get 4 random projects
+                        $projects = array_rand($data, 4);  
+                        foreach($projects as $project)
                         {
-                            $name = htmlentities($data[$colleague][0], ENT_QUOTES, 'ISO-8859-1');
-                            echo '<td class="colleague_image"><a href=""><img src="' . plugin_dir_url( __FILE__ ) . 'images\\' . $data[$colleague][3] . '" alt="' . $name . '"></br>' . $name . '</a></td>';           
+                            $name = htmlentities($data[$project][0], ENT_QUOTES, 'ISO-8859-1');
+                            echo '<td class="project_image"><a href=""><img src="' . plugin_dir_url( __FILE__ ) . 'images\\' . $data[$project][1] . '" alt="' . $name . '"></br>' . $name . '</a></td>';           
                         }
                     }
                     else
                     {
-                        foreach($data as $colleague)
+                        foreach($data as $project)
                         {
-                            $name = htmlentities($colleague[0], ENT_QUOTES, 'ISO-8859-1');
-                            echo '<td class="colleague_image"><a href=""><img src="' . plugin_dir_url( __FILE__ ) . 'images\\' . $colleague[3] . '" alt="' . $name . '"></br><p>' . $name . '</p></a></td>';          
+                            $name = htmlentities($project[0], ENT_QUOTES, 'ISO-8859-1');
+                            echo '<td class="project_image"><a href=""><img src="' . plugin_dir_url( __FILE__ ) . 'images\\' . $project[1] . '" alt="' . $name . '"></br><p>' . $name . '</p></a></td>';          
                         }
                     }
                                              
                     fclose($file);
 
-                    echo '</tr></table></div></div>';             
+                    echo "</tr></table></div></div>";             
                 }
             }
         }
@@ -159,9 +160,9 @@ class List_Colleagues_Widget extends WP_Widget
 
 <?php
 // Register widget
-function register_list_colleagues_widget()
+function register_list_projects_widget()
 {
-    register_widget('List_Colleagues_Widget');
+    register_widget('List_Projects_Widget');
 }
-add_action('widgets_init', 'register_list_colleagues_widget');
+add_action('widgets_init', 'register_list_projects_widget');
 ?>

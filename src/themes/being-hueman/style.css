@@ -22,3 +22,148 @@
  *  Theme customization starts here
 /* ------------------------------------------------------------------------- */
 
+/* Start page */
+
+.body {
+    font-family: "Open Sans", sans-serif;
+}
+
+/* Dynamic content */
+
+.main-inner {
+    min-height: 0px;
+}
+
+.home .pad {
+    padding: 30px 30px 0px;
+}
+
+/* Logo */
+
+.site-title a img {
+    max-height: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* Menu */
+
+.container-inner {
+    width: auto;
+}
+
+#menu-main {
+    float: right;
+}
+
+#nav-header.nav-container {
+    background-color: white !important;
+    width: 800px;
+    float: right;
+    top: -100px;
+    border: 0px;
+    webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#header .pad {
+    border-bottom: 1px solid #cccccc !important;
+    padding-bottom: 0px;
+}
+
+#menu-main a {
+    color: black !important;
+    font-weight: bold;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+}
+
+#menu-main a:hover {
+    background-color: white !important;
+    color: #9EB540 !important;
+}
+
+.page-title {
+    display: none;
+}
+
+/* Footer */
+
+#footer-bottom {
+    display: none;
+}
+
+/* Start page */
+
+.home .entry.themeform {
+    background: url("images/bubbles_start.png") 100% 120% no-repeat;
+}
+
+.home .entry.themeform  p {
+    font-size: 50px !important;
+    line-height: 55px !important;
+    font-family: "Open Sans", sans-serif !important;
+    font-weight: 300 !important;
+}
+
+.home .entry.themeform  a {
+    font-size: 14px;
+    line-height: 25px;
+}
+
+/* Remove space before footer widget */
+
+#footer-full-width-widget {
+    padding: 0px;
+}
+
+/* Blog post feed */
+
+.post-thumbnail, .post-category, .post-byline {
+    display: none;
+}
+
+.post-title {
+    font-size: 24.5px;
+    font-weight: bold; 
+}
+
+.entry.themeform excert {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333333;
+}
+
+/* Single blog post */
+
+.single-post .post-inner.group {
+    max-width: 600px;
+    min-height: 400px;
+    padding-left: 25px; 
+}
+
+.single-post .post-title.entry-title {
+    margin-bottom: 30px;
+    font-size: 50px;
+    line-height: 55px;
+}
+
+.single-post .entry.themeform  p {
+    font-size: 14px;
+    line-height: 20px;
+    color: #333333;
+    font-family: "Open Sans", sans-serif
+}
+
+.single-post .heading {
+    display: none;
+}
+
+.single-post .related-posts.group {
+    display: none;
+}
+
+.single-post #comments {
+    display: none;
+}
