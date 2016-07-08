@@ -1,0 +1,60 @@
+#project_intro_container {
+    padding: 0px 0px;
+    background: #f2f2f2;
+    border-bottom: 1px solid #cccccc;
+}
+
+#project_title {
+    font-weight: 300;
+    font-size: 31.5px;
+    line-height: 44px;
+    margin: 10px 0;
+    float: left;
+}
+
+#project_text {
+    font-family: "Open Sans", sans-serif;
+    text-align: left;
+    float: left;
+    font-size: 14px;
+    line-height: 20px
+}
+
+#project_link {
+    text-align: center;
+    text-decoration: none;
+    background-color: #9eb540;
+    padding: 5px 10px;
+    display: inline-block;
+    border-radius: 30% 110%/170% 40%;
+    border: 1px solid transparent;
+    color: #fff !important;
+    font-weight: bold;
+    margin: 10px;
+    float: left;
+}
+
+#project_container {
+    margin: auto;
+    width: 90%;
+}
+
+#project_text_container{
+    float: right; 
+    width: 288px;  
+}
+
+.project_image {
+    float: left;
+    margin: 10px;
+}
+
+.project_image img {
+    width: 180px;
+	height: 180px;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+	background: url(http://link-to-your/image.jpg) no-repeat;
+    display: block;
+}

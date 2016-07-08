@@ -1,0 +1,47 @@
+#project_intro_container {
+    padding: 0px;
+}
+
+#project_title {
+    text-align: center;
+    font-size: 42px !important;
+    font-weight: 300;
+    margin: 20px 0;
+}
+
+#project_text {
+    max-width: 600px;
+    margin: auto;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#project_container {
+    margin: auto;
+    width: 100%;
+}
+
+.project_image {
+    float: left;
+    margin: 10px;
+}
+
+.project_image p {
+    text-align: center;
+    width: 180px;
+    font-weight: bold;
+    font-family: "Open Sans", sans-serif;
+    color: black;
+    font-size: 14px;
+    margin-top: -10px;
+}
+
+.project_image img {
+    width: 180px;
+	height: 180px;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+	background: url(http://link-to-your/image.jpg) no-repeat;
+    display: block;
+}

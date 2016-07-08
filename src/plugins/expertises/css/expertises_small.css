@@ -1,0 +1,118 @@
+#expertise_intro_container {
+    min-height: 550px;
+    padding: 60px 0px;
+    border-bottom: 1px solid #cccccc;
+}
+
+#expertise_intro_title {
+    font-weight: 300;
+    font-size: 31.5px;
+    line-height: 44px;
+    margin: 10px 0;
+}
+
+/* Konsulten har ordet */
+
+#left_container {
+    width: 606px;
+    float: left;
+}
+
+#emphasized-circle {
+    border-radius: 1000px !important;
+    overflow: hidden;
+    border: solid 1px #ccc;
+    margin: 10px auto;
+    width: 588px;
+}
+
+#emphasized-circle li {
+    display: inline-block;
+    margin: 20px 15px 30px;
+    position: relative;
+}
+
+#emphasized-circle img {
+    width: 100%;
+    max-width: 100%;
+    vertical-align: middle;
+    border: 0;
+}
+
+#emphasized-circle h2 {
+    font-weight: 300;
+    font-size: 31.5px;
+    line-height: 44px;
+    margin: 10px 0;
+}
+
+#emphasized-circle p {
+    line-height: 20px;
+    color: #333333;
+    margin: 0 0 10px;
+}
+
+#image {
+    height: 360px;
+    overflow: hidden;  
+}
+
+#text {
+    height: 228px;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333333;
+}
+
+#wrap {
+    width: 350px;
+    text-align: center;
+    margin: auto;
+}
+
+#green {
+    text-align: center;
+    text-decoration: none;
+    background-color: #9eb540;
+    padding: 5px 10px;
+    display: inline-block;
+    border-radius: 30% 110%/170% 40%;
+    border: 1px solid transparent;
+    color: #fff !important;
+    font-weight: bold;
+    margin: 10px;
+}
+
+/* Kompetenser */
+
+#right_container {
+    width: 606px;
+    float: left;
+}
+
+#text_container {
+    float: left;
+    text-align: center;
+}
+
+.expertise_image {
+    display: inline-block;
+    margin: 20px 15px 30px;
+    position: relative;
+}
+
+.expertise_image p {
+    position: absolute;
+    width: 100px;
+    display: block;
+    word-wrap: break-word;
+    left: 14px;
+}
+
+.bubble { 
+    padding: 28px;
+    border-radius: 1000px;
+    border-radius: 1000px;
+    background-color: #9EB540;
+}
