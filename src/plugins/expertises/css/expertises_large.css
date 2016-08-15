@@ -1,61 +1,27 @@
-#expertise_intro_title {
+#expertise-container {
+    padding-bottom: 30px;
+}
+
+#expertise-title {
     text-align: center;
     font-size: 42px;
     font-weight: 300;
-    font-family: "Open Sans", sans-serif;
-    padding: 30px;
+    padding-bottom: 30px;
 }
 
-#expertise_intro_text {
-    max-width: 600px;
+#intro-text {
+    width: 50%;
     margin: auto;
     margin-bottom: 20px;
     font-size: 14px;
     line-height: 20px;
     color: #333333;
-    font-family: "Open Sans", sans-serif;
 }
 
-.expertise {
-    max-width: 394px;
-    margin-bottom: 20px;
-    display: inline-block;
-    min-height: 1px;
-    margin-left: 30px;
-    text-align: left;
-    vertical-align: top;
-    padding-top: 30px;
+.post {
+    width: 30% !important;
 }
 
-.expertise_text {
-    margin-left: 12px;
-    max-width: 260px;
-    float: left;
-}
-
-.expertise_title {
-    font-size: 24px;
-    margin-top: 0;
-    line-height: 1.4em;
-    margin: 10px 0;
-    font-weight: bold;
-    font-family: "Open Sans", sans-serif;
-}
-
-.expertise_desc {
-    font-size: 14px;
-    line-height: 20px;
-    color: #333333;
-}
-
-.bubble { 
-    padding: 25px;
-    border-radius: 1000px;
-    border-radius: 1000px;
-    background-color: #9EB540;
-    float: left;
-    color: #9EB540;
-    height: 72px;
-    width: 72px;
-    margin-bottom: 10px;
+.post-list .post-row {
+    border: none;
 }

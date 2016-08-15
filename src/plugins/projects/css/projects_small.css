@@ -1,10 +1,14 @@
-#project_intro_container {
+/* Container */
+
+#project-container {
     padding: 0px 0px;
     background: #f2f2f2;
     border-bottom: 1px solid #cccccc;
 }
 
-#project_title {
+/* Intro */
+
+#project-title {
     font-weight: 300;
     font-size: 31.5px;
     line-height: 44px;
@@ -12,7 +16,7 @@
     float: left;
 }
 
-#project_text {
+#project-text {
     font-family: "Open Sans", sans-serif;
     text-align: left;
     float: left;
@@ -20,36 +24,25 @@
     line-height: 20px
 }
 
-#project_link {
-    text-align: center;
-    text-decoration: none;
-    background-color: #9eb540;
-    padding: 5px 10px;
-    display: inline-block;
-    border-radius: 30% 110%/170% 40%;
-    border: 1px solid transparent;
-    color: #fff !important;
-    font-weight: bold;
-    margin: 10px;
-    float: left;
-}
+/* Images */
 
-#project_container {
+
+#project-image-container {
     margin: auto;
     width: 90%;
 }
 
-#project_text_container{
+#project-text-container{
     float: right; 
     width: 288px;  
 }
 
-.project_image {
+.project-image {
     float: left;
     margin: 10px;
 }
 
-.project_image img {
+.project-image img {
     width: 180px;
 	height: 180px;
 	border-radius: 150px;
