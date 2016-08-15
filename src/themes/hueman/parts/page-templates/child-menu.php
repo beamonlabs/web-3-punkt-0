@@ -1,3 +1,8 @@
+<?php
+/*
+Template Name: Child Menu
+*/
+?>
 <?php get_header(); ?>
 
 <section class="content">
@@ -5,9 +10,6 @@
 	<?php get_template_part('parts/page-title'); ?>
 
 	<div class="pad group">
-        
-    <!-- Only display full page widget area on other pages than startpage -->
-    <?php if( !is_home() && !is_front_page() ) { if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('page_content') ) : endif; } ?>
 
 		<?php while ( have_posts() ): the_post(); ?>
 
