@@ -21,3 +21,51 @@ function pageContentWidget_init() {
 	) );
 }
 add_action( 'widgets_init', 'pageContentWidget_init' );
+
+// Add categories for posts
+function sample_insert_category() {
+	if(!term_exists('consultant')) {
+		wp_insert_term(
+			'Consultant',
+			'category',
+			array(
+			  'description'	=> 'For posts of type "Konsulten har ordet".',
+			  'slug' 		=> 'consultant'
+			)
+		);
+	}
+
+    if(!term_exists('expertises')) {
+	    wp_insert_term(
+		    'Expertises',
+		    'category',
+		    array(
+			    'description'	=> 'For posts of type "Vad vi gör".',
+			    'slug' 		=> 'expertises'
+		    )
+	    );
+    }
+
+    if(!term_exists('jobs')) {
+	    wp_insert_term(
+		    'Jobs',
+		    'category',
+		    array(
+			    'description'	=> 'For posts of type "Jobb".',
+			    'slug' 		=> 'jobs'
+		    )
+	    );
+    }
+
+    if(!term_exists('news')) {
+	    wp_insert_term(
+		    'News',
+		    'category',
+		    array(
+			    'description'	=> 'For posts of type "Aktuellt".',
+			    'slug' 		=> 'news'
+		    )
+	    );
+    }
+}
+add_action( 'after_setup_theme', 'sample_insert_category' );

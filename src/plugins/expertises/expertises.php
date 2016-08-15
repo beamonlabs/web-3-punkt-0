@@ -130,7 +130,7 @@ class List_Expertises_Widget extends WP_Widget
             if( is_home() || is_front_page() ) { $is_startpage = TRUE; } else { $is_startpage = FALSE; }
 
             // Arguments for post query
-            $category_name = 'Expertise';
+            $category_name = 'Expertises';
 
             echo '<div id="expertise-container">';
 

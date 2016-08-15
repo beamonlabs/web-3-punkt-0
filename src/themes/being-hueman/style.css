@@ -101,6 +101,7 @@
 
 .home .entry.themeform {
     background: url("images/bubbles_start.png") 100% 120% no-repeat;
+    height: 300px;
 }
 
 .home .entry.themeform  p {

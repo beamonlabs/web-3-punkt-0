@@ -98,10 +98,7 @@ class List_Projects_Widget extends WP_Widget
 
             $file_path = dirname(__FILE__) . '\csv\projects.csv';
 
-            // Is needed if the path includes swedish characters
-            $file_path_conv = iconv( 'utf-8', 'cp1252', $file_path );
-
-            if ( file_exists( $file_path_conv ) )
+            if ( file_exists( $file_path ) )
             {
                 echo '<div id="project-container">';
 
@@ -119,7 +116,7 @@ class List_Projects_Widget extends WP_Widget
                 echo '<div id="project-image-container"><table>';
 
                 /* Get data from csv file */
-                if ( ( $file = fopen( $file_path_conv, "r" ) ) !== FALSE )
+                if ( ( $file = fopen( $file_path, "r" ) ) !== FALSE )
                 {
                     echo '<tr>';
 
