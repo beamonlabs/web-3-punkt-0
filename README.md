@@ -1,7 +1,7 @@
 # web-3-punkt-0
 beamonpeople.se 3.0
 
-Plugin för Project, Colleagues, News samt Expertises fungerar både på startsidan och på egna sidor genom en ny widget area, "page content". Man behöver alltså lägga till dessa delvis på widget area Page content och på en widget area av typen Full footer width som endast ska synnas på start sidan. I admin gränssnittet kan man specificera för vilken sida pluginen ska synnas.
+Plugin för Project, Colleagues, News samt Expertises fungerar både på startsidan och på egna sidor genom en ny widget area, "page content". Man behöver alltså lägga till dessa delvis på widget area Page content och på en widget area av typen Full footer width som endast ska synnas på start sidan. Plugin för Consultant (Konsulten har ordet) fungerar endast på startsidan.  I admin gränssnittet kan man specificera för vilken sida pluginen ska synnas.
 Projekt och kollegor hämtar nu information från varsin csv fil. Det är tänkt så att dessa ska hämtas dynamiskt från ett Google spreadsheet.
 Nyheter under "Aktuellt", jobb annonser under "Jobb", kompetens beskrivningar under "Vad vi gör" samt konsulten har ordet är alla av typen inlägg. När webbredaktören skapar ett nytt inlägg så finns kategorierna News, Jobs, Expertises samt Consultant valbara. Beroende på kategori som inlägget har är det synligt på olika platser.
 Lite att fixa:
