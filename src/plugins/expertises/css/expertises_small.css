@@ -1,6 +1,6 @@
 #expertise-container {
-    min-height: 550px;
-    padding: 60px 0px;
+    min-height: 400px;
+    padding-top: 20px;
     border-bottom: 1px solid #cccccc;
 }
 
@@ -11,14 +11,28 @@
     margin: 10px 0;
 }
 
-/* Konsulten har ordet */
+/* Left container */
 
 #left-container {
     width: 606px;
     float: left;
+    padding-left: 80px;
 }
 
-/* Kompetenser */
+#expertise-title {
+    font-weight: 300;
+    font-size: 31.5px;
+    line-height: 44px;
+    margin: 10px 0;
+    padding-bottom: 30px;
+    text-align: left;
+}
+
+#expertise-text {
+    text-align: left;
+}
+
+/* Right container */
 
 #right-container {
     width: 606px;

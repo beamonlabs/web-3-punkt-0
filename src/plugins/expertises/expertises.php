@@ -74,38 +74,6 @@ class List_Expertises_Widget extends WP_Widget
             <textarea name="<?php echo $this->get_field_name( 'sub_title' ); ?>" id="<?php echo $this->get_field_id( 'sub_title' ); ?>" rows="5" style="width: 100%"><?php echo $instance['sub_title']?></textarea>
         </p>
 
-        <!-- Let admin decide which post that will be displayed in "Konsulten har ordet" -->    
-        
-        <h2>Konsulten har ordet</h2>
-
-        <p>
-            <label for="<?php echo $this->get_field_id( 'select_post' ); ?>"><?php _e( 'Select post', 'wp_widget_plugin' ); ?></label><br/>          
-            <select name="<?php echo $this->get_field_name( 'select_post' ); ?>" id="<?php echo $this->get_field_id( 'select_post' ); ?>">
-
-            <?php
-                $args = array( 'category_name' => 'Consultant' );
-                $the_query = new WP_Query( $args );
-                while ( $the_query->have_posts() ) 
-                {
-                    $the_query->the_post();
-                    $id = get_the_ID();
-                    $title = get_the_title();
-                    $option = '<option value="' . $id . '"';
-                    $option .= selected( $instance['select_post'], $id );
-                    $option .= '>' . $title;
-                    $option .= '</option>';
-                    echo $option;
-                }
-            ?>
-            </select>
-        </p>
-
-        <!-- Let admin choose author -->
-        <p>
-            <label for="<?php echo $this->get_field_id( 'author' ); ?>"><?php _e( 'Author' ); ?></label><br/>
-            <input type="text" name="<?php echo $this->get_field_name( 'author' ); ?>" id="<?php echo $this->get_field_id( 'author' ); ?>" value="<?php echo $instance['author']?>" style="width: 100%">
-        </p>
-
     <?php
     }
     
@@ -116,8 +84,6 @@ class List_Expertises_Widget extends WP_Widget
         $instance['select'] = strip_tags( $new_instance['select'] );
         $instance['title'] = strip_tags( $new_instance['title'] );
         $instance['sub_title'] = strip_tags( $new_instance['sub_title'] );
-        $instance['select_post'] = strip_tags( $new_instance['select_post'] );
-        $instance['author'] = strip_tags( $new_instance['author'] );
         return $instance;
     }
 
@@ -129,9 +95,6 @@ class List_Expertises_Widget extends WP_Widget
             // Flag for differences between start page and other pages
             if( is_home() || is_front_page() ) { $is_startpage = TRUE; } else { $is_startpage = FALSE; }
 
-            // Arguments for post query
-            $category_name = 'Expertise';
-
             echo '<div id="expertise-container">';
 
             if ( $is_startpage )
@@ -142,29 +105,34 @@ class List_Expertises_Widget extends WP_Widget
             {
                 echo '<link href="' . plugin_dir_url( __FILE__ ) . 'css/expertises_large.css" rel="stylesheet" type="text/css" />';
                 echo '<h2 id="expertise-title">' . $instance["title"] . '</h2><p id="intro-text">'  . $instance["sub_title"] .  '</p></div>';              
-                $args = array( 'category_name' => $category_name );
             }
+
+            // Arguments for post query
+            $category_name = 'Expertises';
+            $args = array( 'category_name' => $category_name );
+            $the_query = new WP_Query( $args );
 
             if( $is_startpage )
             {            
-                $selected_post = get_post( $instance["select_post"] );
           
-                echo '<div id="left-container">';
-                echo '<div id="emphasized-circle">';
-                echo '<div id="emphasized-circle-image"><img src="' . plugin_dir_url( __FILE__ ) . 'images\\konsultenharordet.jpg" alt="Konsulten har ordet"></div>';
-                echo '<div id="emphasized-circle-text"><div id="emphasized-circle-wrap">';
-                echo '<h2>Konsulten har ordet</h2><p>"' . $selected_post->post_title . '" - ' . $instance["author"] . '</p><a id="green-link" title="Läs artikeln" href="' . get_permalink( $selected_post->ID ) . '">Läs artikeln</a></div></div></div></div>';
+                echo '<div id="left-container"><div id="text-container"><h2 id="expertise-title">' . $instance["title"] . '</h2><p id="expertise-text">'  . $instance["sub_title"] .  '</p><a class="green-link" title="Kompetenser" href="/Vad-vi-gor/">Läs om våra kompetenser</a></div></div>';
 
-                echo '<div id="right-container">';
-                echo '<div id="text-container"><h2 id="expertise_intro_title">' . $instance["title"] . '</h2><p id="expertise_text">'  . $instance["sub_title"] .  '</p><a class="green" title="Kompetenser" href="/Vad-vi-gor/">Läs om våra kompetenser</a></div>';
-                echo '<li class="expertise-image"><div class="bubble"><img src="' . plugin_dir_url( __FILE__ ) . 'images\\strategi.png" alt="Strategi"></div><p>Strategi</p></li>';           
-                echo '<li class="expertise-image"><div class="bubble"><img src="' . plugin_dir_url( __FILE__ ) . 'images\\ledning.png" alt="Ledning"></div><p>Ledning</p></li>';
-                echo '<li class="expertise-image"><div class="bubble"><img src="' . plugin_dir_url( __FILE__ ) . 'images\\krav.png" alt="Krav"></div><p>Krav</p></li>';           
-                echo '<li class="expertise-image"><div class="bubble"><img src="' . plugin_dir_url( __FILE__ ) . 'images\\arkitektur-utveckling.png" alt="Arkitektur och utveckling"></div><p>Arkitektur/</br>Utveckling</p></li>';
-                echo '<li class="expertise-image"><div class="bubble"><img src="' . plugin_dir_url( __FILE__ ) . 'images\\ux-webb.png" alt="UX/Webb"></div><p>UX/Webb</p></li>';           
-                echo '<li class="expertise-image"><div class="bubble"><img src="' . plugin_dir_url( __FILE__ ) . 'images\\qa-test.png" alt="QA/qa-test"></div><p>QA/qa-test</p></li>';
-                echo '</div>';
-                echo '</ul></div>';
+                echo '<div id="right-container"><ul>';
+
+                $the_query = new WP_Query( $args );
+                if ( $the_query->have_posts() ) 
+                {
+                    while ( $the_query->have_posts() )
+                    {
+                        $the_query->the_post();
+
+                        echo '<li class="expertise-image"><a href="' . get_the_permalink() . '"><div class="bubble">';
+                        echo the_post_thumbnail();
+                        echo '</div><p>' . get_the_title() . '</p></a></li>';                                        
+                    }
+                }
+
+                echo '</ul></div></div>';
             }
             else
             {
@@ -178,7 +146,9 @@ class List_Expertises_Widget extends WP_Widget
                     {
                         $the_query->the_post();
                                             
-                        echo '<article class="group post type-post status-publish format-standard hentry"><div class="post-inner post-hover">';
+                        echo '<article class="group post type-post status-publish format-standard hentry"><div class="thumbnail-left bubble">';
+                        echo the_post_thumbnail();
+                        echo '</div><div class="post-inner post-hover">';
                         echo '<a class="post-title" href="' . get_the_permalink() .'" rel="bookmark">' . get_the_title() .'</a></br>';
                         echo '<div><p>' . get_the_content() . '</p></div></div></article>';
 
