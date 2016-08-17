@@ -105,10 +105,11 @@
 }
 
 .home .entry.themeform  p {
-    font-size: 50px;
-    line-height: 55px;
-    font-weight: 300;
-    color: black
+    font-size: 50px !important;
+    line-height: 55px !important;
+    font-weight: 300 !important;
+    color: black !important;
+    font-family: "Open Sans", sans-serif !important;
 }
 
 .home .entry.themeform  a {
@@ -239,8 +240,9 @@
 }
 
 .bubble { 
-    padding: 28px;
+    padding: 25px;
     border-radius: 1000px;
     border-radius: 1000px;
     background-color: #9EB540;
 }
+

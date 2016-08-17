@@ -2,10 +2,10 @@
 
 #news-container {
     margin: auto;
-    width: 90%;
     min-height: 700px;
     border-bottom: 1px solid #cccccc;
     font-family: "Open Sans", sans-serif;
+    padding-left: 60px;
 }
 
 /* Container title */

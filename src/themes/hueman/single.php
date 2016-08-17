@@ -9,7 +9,7 @@
 		<?php while ( have_posts() ): the_post(); ?>
 			<article <?php post_class(); ?>>
 				<div class="post-inner group">
-
+        
 					<h1 class="post-title entry-title"><?php the_title(); ?></h1>
           <?php get_template_part('parts/single-author-date'); ?>
 
@@ -19,7 +19,8 @@
 
 					<div class="<?php echo implode( ' ', apply_filters( 'hu_single_entry_class', array('entry','themeform') ) ) ?>">
 						<div class="entry-inner">
-							<?php the_content(); ?>
+
+                            <?php the_content(); ?>  			
 							<nav class="pagination group">
                 <?php
                   //Checks for and uses wp_pagenavi to display page navigation for multi-page posts.

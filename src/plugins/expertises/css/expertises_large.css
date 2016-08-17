@@ -25,3 +25,21 @@
 .post-list .post-row {
     border: none;
 }
+
+.thumbnail-left {
+    float: left;
+}
+
+.post-inner {
+    float: right;
+    max-width: 260px;
+    margin-right: 10px !important;
+}
+
+.post p {
+    font-size: 14px;
+}
+
+.post-title {
+    font-size: 22px;
+}
