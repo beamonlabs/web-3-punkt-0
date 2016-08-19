@@ -92,36 +92,57 @@ class List_Jobs_Widget extends WP_Widget
         // Display only on page that admin selected
         if( is_page( $instance['select'] ) )
         {
-            echo '<link href="' . plugin_dir_url( __FILE__ ) . 'css/jobs.css" rel="stylesheet" type="text/css" />';               
-            echo '<h2 id="jobs-title">' . $instance["title"] . '</h2><p id="jobs-text">'  . $instance["sub_title"] .  '</p>';
+        ?>
+            <link href="<?php echo plugin_dir_url( __FILE__ )?>css/jobs.css" rel="stylesheet" type="text/css" />               
+            <h2 id="jobs-title"><?php echo $instance["title"] ?></h2>
+            <p id="jobs-text"><?php echo $instance["sub_title"] ?></p>
             
+            <?php
             $category_name = 'Jobs';
 
             // Query for posts
-            $args = array( 'category_name' => $category_name);
+            $args = array( 'category_name' => $category_name );
             $the_query = new WP_Query( $args );
             if ( $the_query->have_posts() ) 
             {
-                echo '<div class="post-list group"><div class="post-row">';
-                $i = 1; 
+            ?>
+                <div class="post-list group">
+                    <div class="post-row">
+                
+                    <?php
+                     $i = 1; 
 
-                while ( $the_query->have_posts() ) 
-                {
-                    $the_query->the_post();
-                    echo '<article class="group post type-post status-publish format-standard hentry"><div class="post-inner post-hover">';
-                    echo '<a class="post-title" href="' . get_the_permalink() .'" rel="bookmark">' . get_the_title() .'</a></br>';
-                    echo '<div class="entry excerpt"><p>' . get_the_excerpt() . '</p></div></div></article>';
+                    while ( $the_query->have_posts() ) 
+                    {
+                        $the_query->the_post();
+                        ?>
 
-                    // Display two posts on each row 
-                    if( $i % 2 == 0 ) 
-                    { 
-                        echo '</div><div class="post-row">'; 
-                    } 
+                        <article class="group post type-post status-publish format-standard hentry">
+                            <div class="post-inner post-hover">
+                                <a class="post-title" href="<?php echo get_the_permalink() ?>" rel="bookmark"><?php echo get_the_title() ?></a></br>
+                                <div class="entry excerpt">
+                                    <p><?php echo get_the_excerpt() ?></p>
+                                </div>
+                            </div>
+                        </article>
 
-                    $i++;
-                }
+                        <?php
+                        // Display two posts on each row 
+                        if( $i % 2 == 0 ) 
+                        { 
+                        ?>
+                            </div>
+                            <div class="post-row"> 
+                        <?php
+                        } 
 
-                echo '</div></div>';             
+                        $i++;
+                    }
+                    ?>
+
+                    </div>
+                </div>
+            <?php            
             }
             wp_reset_postdata();
         }

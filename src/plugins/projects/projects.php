@@ -100,26 +100,42 @@ class List_Projects_Widget extends WP_Widget
 
             if ( file_exists( $file_path ) )
             {
-                echo '<div id="project-container">';
+            ?>
+                <div id="project-container">
 
+                <?php
                 if ( $is_startpage )
                 {
-                    echo '<link href="' . plugin_dir_url( __FILE__ ) . 'css/projects_small.css" rel="stylesheet" type="text/css" />';
-                    echo '<div id="project-text-container"><h2 id="project-title">' . $instance["title"] . '</h2><p id="project-text">' . $instance["sub_title"] . '</p><a class="green-link" title="Projekt" href="/Projekt/">Läs om våra projekt</a></div>';
+                ?>
+                    <link href="<?php echo plugin_dir_url( __FILE__ )?>css/projects_small.css" rel="stylesheet" type="text/css" />
+                    <div id="project-text-container">
+                        <h2 id="project-title"><?php echo $instance["title"] ?></h2>
+                        <p id="project-text"><?php echo $instance["sub_title"] ?></p>
+                        <a class="green-link" title="Projekt" href="/Projekt/">Läs om våra projekt</a>
+                    </div>
+                <?php
                 }
                 else
                 {
-                    echo '<link href="' . plugin_dir_url( __FILE__ ) . 'css/projects_large.css" rel="stylesheet" type="text/css" />';
-                    echo '<h1 id="project-title">' . $instance["title"] . '</h1><p id="project-text">' . $instance["sub_title"] . '</p>';
+                ?>
+                    
+                    <link href="<?php echo plugin_dir_url( __FILE__ )?>css/projects_large.css" rel="stylesheet" type="text/css" />
+                    <h1 id="project-title"><?php echo $instance["title"] ?></h1>
+                    <p id="project-text"><?php echo $instance["sub_title"] ?></p>
+                <?php
                 }
+                ?>
 
-                echo '<div id="project-image-container"><table>';
+                <div id="project-image-container"><table>
 
-                /* Get data from csv file */
+                <!-- Get data from csv file -->
+                <?php
                 if ( ( $file = fopen( $file_path, "r" ) ) !== FALSE )
                 {
-                    echo '<tr>';
+                ?>
+                    <tr>
 
+                    <?php
                     $data = array();
                     while ( ( $data_temp = fgetcsv( $file, 1000, ";" ) ) !== FALSE ) 
 	                {  
@@ -136,7 +152,10 @@ class List_Projects_Widget extends WP_Widget
                         foreach( $projects as $project )
                         {
                             $name = htmlentities( $data[$project][0], ENT_QUOTES, 'ISO-8859-1' );
-                            echo '<td class="project-image"><a href=""><img src="' . plugin_dir_url( __FILE__ ) . 'images\\' . $data[$project][1] . '" alt="' . $name . '"></br>' . $name . '</a></td>';           
+                            ?>
+                            
+                            <td class="project-image"><a href=""><img src="<?php echo plugin_dir_url( __FILE__ )?>images\\<?php echo $data[$project][1]?>" alt="<?php echo $name ?>"></br><p><?php echo $name ?></p></a></td>          
+                        <?php
                         }
                     }
                     else
@@ -144,11 +163,17 @@ class List_Projects_Widget extends WP_Widget
                         foreach( $data as $project )
                         {
                             $name = htmlentities( $project[0], ENT_QUOTES, 'ISO-8859-1' );
-                            echo '<td class="project-image"><a href=""><img src="' . plugin_dir_url( __FILE__ ) . 'images\\' . $project[1] . '" alt="' . $name . '"></br><p>' . $name . '</p></a></td>';          
+                            ?>
+                            
+                            <td class="project-image"><a href=""><img src="<?php echo plugin_dir_url( __FILE__ )?>images\\<?php echo $project[1]?>" alt="<?php echo $name ?>"></br><p><? echo $name ?></p></a></td>       
+                        <?php
                         }
                     }                                           
                     fclose( $file );
-                    echo "</tr></table></div></div>";             
+                    ?>
+                    
+                    </tr></table></div></div>
+                <?php           
                 }
             }
         }

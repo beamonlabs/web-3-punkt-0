@@ -98,26 +98,39 @@ class List_Colleagues_Widget extends WP_Widget
 
             if ( file_exists( $file_path) )
             {
-                echo '<div id="colleague-container">';
+            ?>
+                <div id="colleague-container">
 
+                <?php
                 if ( $is_startpage )
                 {
-                    echo '<link href="' . plugin_dir_url( __FILE__ ) . 'css/colleagues_small.css" rel="stylesheet" type="text/css" />';
-                    echo '<h2 id="colleague-title">' . $instance['title'] . '</h2><a class="green-link" title="Medarbetare" href="/Beamon People/">Se alla Beamon People</a>';
+                ?>
+                    <link href="<?php echo plugin_dir_url( __FILE__ )?>css/colleagues_small.css" rel="stylesheet" type="text/css" />
+                    <h2 id="colleague-title"><?php echo $instance['title'] ?></h2>
+                    <a class="green-link" title="Medarbetare" href="/Beamon People/">Se alla Beamon People</a>
+                <?php
                 }
                 else
                 {
-                    echo '<link href="' . plugin_dir_url( __FILE__ ) . 'css/colleagues_large.css" rel="stylesheet" type="text/css" />';
-                    echo '<h1 id="colleague-title">' . $instance["title"] . '</h1><p id="colleague-text">' . $instance["sub_title"] . '</p>';
+                ?>
+                    <link href="<?php echo plugin_dir_url( __FILE__ )?>css/colleagues_large.css" rel="stylesheet" type="text/css" />
+                    <h1 id="colleague-title"><?php echo $instance["title"] ?></h1>
+                    <p id="colleague-text"><?php $instance["sub_title"] ?></p>
+                <?php
                 }
+                ?>
+                
+                <div id="colleague-image-container">
+                <table>
 
-                echo '<div id="colleague-image-container"><table>';
-
+                <?php
                 /* Get data from csv file */
                 if ( ( $file = fopen( $file_path, "r" ) ) !== FALSE )
                 {
-                    echo '<tr>';
+                ?>
+                    <tr>
 
+                    <?php
                     $data = array();
                     while ( ( $data_temp = fgetcsv( $file, 1000, ";" ) ) !== FALSE ) 
 	                {  
@@ -134,7 +147,13 @@ class List_Colleagues_Widget extends WP_Widget
                         foreach( $colleagues as $colleague )
                         {
                             $name = htmlentities( $data[$colleague][0], ENT_QUOTES, 'ISO-8859-1' );
-                            echo '<td class="colleague-image"><a href=""><img src="' . plugin_dir_url( __FILE__ ) . 'images\\' . $data[$colleague][3] . '" alt="' . $name . '"></br>' . $name . '</a></td>';           
+                            ?>                            
+                            <td class="colleague-image">
+                                <a href="">
+                                    <img src="<?php echo plugin_dir_url( __FILE__ )?>images\\<?php echo $data[$colleague][3]?>" alt="<?php echo $name ?>"></br><?php echo $name ?>
+                                </a>
+                            </td>
+                        <?php
                         }
                     }
                     else
@@ -142,12 +161,22 @@ class List_Colleagues_Widget extends WP_Widget
                         foreach( $data as $colleague )
                         {
                             $name = htmlentities( $colleague[0], ENT_QUOTES, 'ISO-8859-1' );
-                            echo '<td class="colleague-image"><a href=""><img src="' . plugin_dir_url( __FILE__ ) . 'images\\' . $colleague[3] . '" alt="' . $name . '"></br><p>' . $name . '</p></a></td>';          
+                            ?>
+                            <td class="colleague-image">
+                                <a href="">
+                                    <img src="<?php echo plugin_dir_url( __FILE__ )?>images\\<?php echo $colleague[3] ?>" alt="<?php echo $name ?>"></br>
+                                    <p><?php echo $name ?></p>
+                                </a>
+                            </td>
+                        <?php          
                         }
                     }
                                              
                     fclose( $file );
-                    echo '</tr></table></div></div>';             
+                    ?>
+                    
+                    </tr></table></div></div>
+                <?php     
                 }
             }
         }

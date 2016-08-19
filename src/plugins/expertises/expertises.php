@@ -94,17 +94,26 @@ class List_Expertises_Widget extends WP_Widget
         {
             // Flag for differences between start page and other pages
             if( is_home() || is_front_page() ) { $is_startpage = TRUE; } else { $is_startpage = FALSE; }
+            ?>
 
-            echo '<div id="expertise-container">';
+            <div id="expertise-container">
 
+            <?php
             if ( $is_startpage )
             {
-                echo '<link href="' . plugin_dir_url( __FILE__ ) . 'css/expertises_small.css" rel="stylesheet" type="text/css" />';            
+            ?>
+                <link href="<?php echo plugin_dir_url( __FILE__ )?>css/expertises_small.css" rel="stylesheet" type="text/css" />           
+            <?php
             }
             else
             {
-                echo '<link href="' . plugin_dir_url( __FILE__ ) . 'css/expertises_large.css" rel="stylesheet" type="text/css" />';
-                echo '<h2 id="expertise-title">' . $instance["title"] . '</h2><p id="intro-text">'  . $instance["sub_title"] .  '</p></div>';              
+            ?>
+                <link href="<?php echo plugin_dir_url( __FILE__ )?>css/expertises_large.css" rel="stylesheet" type="text/css" />
+                <h2 id="expertise-title"><?php echo $instance["title"] ?></h2>
+                <p id="intro-text"><?php echo $instance["sub_title"] ?></p>
+            </div> 
+    
+            <?php         
             }
 
             // Arguments for post query
@@ -114,25 +123,44 @@ class List_Expertises_Widget extends WP_Widget
 
             if( $is_startpage )
             {            
-          
-                echo '<div id="left-container"><div id="text-container"><h2 id="expertise-title">' . $instance["title"] . '</h2><p id="expertise-text">'  . $instance["sub_title"] .  '</p><a class="green-link" title="Kompetenser" href="/Vad-vi-gor/">Läs om våra kompetenser</a></div></div>';
+            ?>                
+                <div id="left-container">
+                    <div id="text-container">
+                        <h2 id="expertise-title"><?php echo $instance["title"] ?></h2>
+                        <p id="expertise-text"><?php echo $instance["sub_title"] ?></p>
+                        <a class="green-link" title="Kompetenser" href="/Vad-vi-gor/">Läs om våra kompetenser</a>
+                    </div>
+                </div>
 
-                echo '<div id="right-container"><ul>';
+                <div id="right-container">
+                    <ul>
 
+                <?php
                 $the_query = new WP_Query( $args );
                 if ( $the_query->have_posts() ) 
                 {
                     while ( $the_query->have_posts() )
                     {
                         $the_query->the_post();
+                        ?>
 
-                        echo '<li class="expertise-image"><a href="' . get_the_permalink() . '"><div class="bubble">';
-                        echo the_post_thumbnail();
-                        echo '</div><p>' . get_the_title() . '</p></a></li>';                                        
+                        <li class="expertise-image">
+                            <a href="<?php echo get_the_permalink() ?>">
+                                <div class="bubble">
+                                    <?php
+                                    echo the_post_thumbnail();
+                                    ?>
+                                </div>
+                                <p><?php echo get_the_title() ?></p>
+                            </a>
+                        </li>
+                    <?php                                       
                     }
                 }
+                ?>
 
-                echo '</ul></div></div>';
+                </ul></div></div>
+            <?php
             }
             else
             {
@@ -140,27 +168,46 @@ class List_Expertises_Widget extends WP_Widget
                 $the_query = new WP_Query( $args );
                 if ( $the_query->have_posts() ) 
                 {
-                    echo '<div class="post-list group"><div class="post-row">';
-                    $i = 1; 
-                    while ( $the_query->have_posts() ) 
-                    {
-                        $the_query->the_post();
+                ?>
+                    <div class="post-list group">
+                        <div class="post-row">
+                            <?php
+                            $i = 1; 
+                            while ( $the_query->have_posts() ) 
+                            {
+                                $the_query->the_post();
+                                ?>
                                             
-                        echo '<article class="group post type-post status-publish format-standard hentry"><div class="thumbnail-left bubble">';
-                        echo the_post_thumbnail();
-                        echo '</div><div class="post-inner post-hover">';
-                        echo '<a class="post-title" href="' . get_the_permalink() .'" rel="bookmark">' . get_the_title() .'</a></br>';
-                        echo '<div><p>' . get_the_content() . '</p></div></div></article>';
+                                <article class="group post type-post status-publish format-standard hentry">
+                                    <div class="thumbnail-left bubble">
+                                        <?php
+                                        echo the_post_thumbnail();
+                                        ?>
+                                    </div>
+                                    <div class="post-inner post-hover">
+                                        <a class="post-title" href="<?php echo get_the_permalink() ?>" rel="bookmark"><?php echo get_the_title() ?></a></br>
+                                        <div>
+                                            <p><?php echo get_the_content() ?></p>
+                                        </div>
+                                    </div>
+                                </article>
 
-                        // Display three posts on each row 
+                        <!-- Display three posts on each row -->
+                        <?php 
                         if( $i % 3 == 0 ) 
                         { 
-                            echo '</div><div class="post-row">'; 
+                        ?>
+                            </div>
+                            <div class="post-row">
+                        <?php
                         } 
 
                         $i++; 
                     }
-                    echo '</div>';
+                    ?>
+                    </div>
+                </div>
+                <?php
                 }
                 wp_reset_postdata();
             }                   
