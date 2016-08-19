@@ -34,7 +34,8 @@
 
 #project-text-container{
     float: right; 
-    width: 288px;  
+    width: 288px; 
+    padding-right: 70px; 
 }
 
 .project-image {
@@ -50,4 +51,8 @@
 	-moz-border-radius: 150px;
 	background: url(http://link-to-your/image.jpg) no-repeat;
     display: block;
+}
+
+#project-image p {
+    color: black;
 }

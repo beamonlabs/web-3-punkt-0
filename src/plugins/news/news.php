@@ -91,14 +91,20 @@ class List_News_Widget extends WP_Widget
 
             if( $is_startpage )
             {
-                echo '<div id="news-container">';
-                echo '<link href="' . plugin_dir_url( __FILE__ ) . 'css/news_small.css" rel="stylesheet" type="text/css" />';
-                echo '<h2 id="news-title">' . $instance["title"] . '</h2>';
-                $args = array( 'category_name' => $category_name, 'posts_per_page' => $post_count );
+            ?>
+                <div id="news-container">
+                    <link href="<?php echo plugin_dir_url( __FILE__ )?>css/news_small.css" rel="stylesheet" type="text/css" />
+                    <h2 id="news-title"><?php echo $instance["title"]?> </h2>
+                
+                    <?php
+                    $args = array( 'category_name' => $category_name, 'posts_per_page' => $post_count );
             }
             else
             {
-                echo '<link href="' . plugin_dir_url( __FILE__ ) . 'css/news_large.css" rel="stylesheet" type="text/css" />';
+            ?>
+                <link href="<?php echo plugin_dir_url( __FILE__ )?>css/news_large.css" rel="stylesheet" type="text/css" />
+                
+                <?php
                 $args = array( 'category_name' => $category_name );
             }
             
@@ -108,46 +114,92 @@ class List_News_Widget extends WP_Widget
             {
                 if( $is_startpage )
                 {
-                    echo '<div id="news-post-container"><ul>';
-                    while ( $the_query->have_posts() ) 
-                    {
-                        $the_query->the_post();
-                    
-                        echo '<li><a class="news-post-title" href="' . get_the_permalink() .'" rel="bookmark">' . get_the_title() .'</a>';
-                        echo '</br></br><p>' . get_the_date() . '</p><p class="news-post-excerpt">' . get_the_excerpt() . '</p></li>';
-                    }                 
-                    echo '<li><a class="green-link" title="Nyheter" href="/Aktuellt/">Alla nyheter</a></li></ul></div>';
-          
-                    // Image on the right 
-                    echo '<div id="right-container">';
-                    echo '<div id="emphasized-circle">';
-                    echo '<div id="emphasized-circle-image"><img src="' . plugin_dir_url( __FILE__ ). 'images\\jobbamedoss.jpg" alt="Jobba med oss" /></div>';
-                    echo '<div id="emphasized-circle-text"><div id="emphasized-circle-wrap">';
-                    echo '<h2>Vill du jobba med oss?</h2><p>Att arbeta hos Beamon kan inte beskrivas, det måste upplevas.</p>';
-                    echo '<a class="green-link" title="Läs om jobb hos oss" href="/Jobb/">Läs om jobb hos oss</a></div></div></div></div></div>';
+                ?>
+                    <div id="news-post-container">
+                        <ul>
+
+                        <?php
+                        while ( $the_query->have_posts() ) 
+                        {
+                            $the_query->the_post();
+                            ?>
+
+                            <li>
+                                <a class="news-post-title" href="<?php echo get_the_permalink() ?>" rel="bookmark"><?php echo get_the_title() ?></a>
+                                </br></br><p><?php echo get_the_date() ?></p><p class="news-post-excerpt"><?php echo get_the_excerpt() ?></p>
+                            </li>
+
+                        <?php
+                        }                 
+                        ?>
+                            <li>
+                                <a class="green-link" title="Nyheter" href="/Aktuellt/">Alla nyheter</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Image on the right --> 
+                    <div id="right-container">
+                        <div id="emphasized-circle">
+                            <div id="emphasized-circle-image">
+                                <img src="<?php echo plugin_dir_url( __FILE__ ) ?>images\jobbamedoss.jpg" alt="Jobba med oss" />
+                            </div>
+                            <div id="emphasized-circle-text">
+                                <div id="emphasized-circle-wrap">
+                                    <h2>Vill du jobba med oss?</h2>
+                                    <p>Att arbeta hos Beamon kan inte beskrivas, det måste upplevas.</p>
+                                    <a class="green-link" title="Läs om jobb hos oss" href="/Jobb/">Läs om jobb hos oss</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <?php
                 }
                 else
                 {
-                    echo '<div class="post-list group"><div class="post-row">';
-                    $i = 1; 
-                    while ( $the_query->have_posts() ) 
-                    {
-                        $the_query->the_post();
-                                            
-                        echo '<article class="group post type-post status-publish format-standard hentry"><div class="post-inner post-hover">';
-                        echo '<a class="post-title" href="' . get_the_permalink() .'" rel="bookmark">' . get_the_title() .'</a></br></br>';
-                        echo '<div class="published"><p>' . get_the_date() . '</p></d>';
-                        echo '<div class="entry excerpt"><p>' . get_the_excerpt() . '</p></div></div></article>';
+                ?>
+                    <div class="post-list group">
+                        <div class="post-row">
 
+                            <?php
+                            $i = 1; 
+                            while ( $the_query->have_posts() ) 
+                            {
+                                $the_query->the_post();
+                                ?>
+                                            
+                                <article class="group post type-post status-publish format-standard hentry">
+                                    <div class="post-inner post-hover">
+                                        <a class="post-title" href="<?php echo get_the_permalink() ?>" rel="bookmark"><?php echo get_the_title() ?></a></br></br>
+                                        <div class="published">
+                                            <p><?php echo get_the_date() ?></p>
+                                        </div>
+                                        <div class="entry excerpt">
+                                            <p><?php echo get_the_excerpt() ?></p>
+                                        </div>
+                                    </div>
+                                </article>
+                         
+                        <?php
                         // Display two posts on each row 
                         if( $i % 2 == 0 ) 
                         { 
-                            echo '</div><div class="post-row">'; 
+                        ?>
+                            </div>
+                            <div class="post-row">
+                        <?php
                         } 
 
                         $i++; 
                     }
-                    echo '</div></div>';
+                    ?>
+                    
+                    </div>
+                </div>
+
+                <?php
                 }            
             } 
             wp_reset_postdata();

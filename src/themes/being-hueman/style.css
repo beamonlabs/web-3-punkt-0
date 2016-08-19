@@ -79,6 +79,7 @@
         font-weight: bold;
         font-family: "Open Sans", sans-serif;
         font-size: 14px;
+        text-transform: uppercase;
     }
 
     #nav-header.nav-container a:hover {
@@ -246,3 +247,15 @@
     background-color: #9EB540;
 }
 
+#footer {
+    color: black !important;
+}
+
+#footer a {
+    color: black;
+}
+
+.big {
+    font-size: 30px;
+    font-weight: bold;
+}
