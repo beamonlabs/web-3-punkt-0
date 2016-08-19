@@ -3,9 +3,9 @@ version: '2'
 services:
 
   wordpress:
-    image: beamonlabs/wordpress:latest
+    build: .
     ports:
-      - 8080:80
+      - 9090:80
     environment:
       WORDPRESS_DB_PASSWORD: password
 
@@ -14,3 +14,8 @@ services:
     image: mariadb
     environment:
       MYSQL_ROOT_PASSWORD: password
+    volumes_from:
+      - mysql_data
+
+  mysql_data:
+    image: mariadb
