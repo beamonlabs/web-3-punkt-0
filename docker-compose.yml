@@ -8,7 +8,10 @@ services:
       - 9090:80
     environment:
       WORDPRESS_DB_PASSWORD: password
-
+    volumes_from:
+      - wordpress_data
+  wordpress_data:
+    build: .
 
   mysql:
     image: mariadb
