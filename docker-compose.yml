@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+
+  wordpress:
+    build: .
+    ports:
+      - 9090:80
+    environment:
+      WORDPRESS_DB_PASSWORD: password
+    volumes_from:
+      - wordpress_data
+  wordpress_data:
+    build: .
+
+  mysql:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes_from:
+      - mysql_data
+
+  mysql_data:
+    image: mariadb
