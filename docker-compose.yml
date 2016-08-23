@@ -10,7 +10,6 @@ services:
       WORDPRESS_DB_PASSWORD: password
     volumes_from:
       - wordpress_data
-
   wordpress_data:
     image: beamonlabs/web-3-punkt-0
 
