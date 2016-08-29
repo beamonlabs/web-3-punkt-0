@@ -16,7 +16,8 @@
 				<?php get_template_part('parts/page-image'); ?>
 
 				<div class="entry themeform">
-					<?php the_content(); ?>
+					<?php
+                    if ( !function_exists('dynamic_sidebar') || ( is_home() || is_front_page()) ) { the_content(); }?>
 					<div class="clear"></div>
 				</div><!--/.entry-->
 

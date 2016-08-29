@@ -88,72 +88,71 @@ class List_News_Widget extends WP_Widget
             // Arguments for post query
             $category_name = 'News';
             $post_count = 3;
+            ?>
 
-            if( $is_startpage )
-            {
-            ?>
-                <div id="news-container">
-                    <link href="<?php echo plugin_dir_url( __FILE__ )?>css/news_small.css" rel="stylesheet" type="text/css" />
-                    <h2 id="news-title"><?php echo $instance["title"]?> </h2>
-                
-                    <?php
-                    $args = array( 'category_name' => $category_name, 'posts_per_page' => $post_count );
-            }
-            else
-            {
-            ?>
-                <link href="<?php echo plugin_dir_url( __FILE__ )?>css/news_large.css" rel="stylesheet" type="text/css" />
-                
+            <div id="news-container">
+                <link href="<?php echo plugin_dir_url( __FILE__ )?>css/news.css" rel="stylesheet" type="text/css" />
+
                 <?php
-                $args = array( 'category_name' => $category_name );
-            }
-            
-            // Query for posts 
-            $the_query = new WP_Query( $args );
-            if ( $the_query->have_posts() ) 
-            {
                 if( $is_startpage )
                 {
                 ?>
-                    <div id="news-post-container">
-                        <ul>
+                    <div id="news-startpage-widget" class="startpage-widget"> 
+                    <h2 class="align-left"><?php echo $instance["title"]?> </h2>          
+                    <?php
+                    $args = array( 'category_name' => $category_name, 'posts_per_page' => $post_count );
+                }
+                else
+                {
+                    $args = array( 'category_name' => $category_name );
+                }
+            
+                // Query for posts 
+                $the_query = new WP_Query( $args );
+                if ( $the_query->have_posts() ) 
+                {
+                    if( $is_startpage )
+                    {
+                    ?>
+                        <div class="half-width float-left align-left">
+                            <ul>
 
-                        <?php
-                        while ( $the_query->have_posts() ) 
-                        {
-                            $the_query->the_post();
+                            <?php
+                            while ( $the_query->have_posts() ) 
+                            {
+                                $the_query->the_post();
+                                ?>
+
+                                <li>
+                                    <a class="news-post-title" href="<?php echo get_the_permalink() ?>" rel="bookmark"><?php echo get_the_title() ?></a>
+                                    </br></br><p><?php echo get_the_date() ?></p><p class="news-post-excerpt"><?php echo get_the_excerpt() ?></p>
+                                </li>
+
+                            <?php
+                            }                 
                             ?>
+                                <li>
+                                    <a class="green-link" title="Nyheter" href="/Aktuellt/">Alla nyheter</a>
+                                </li>
+                            </ul>
+                        </div>
 
-                            <li>
-                                <a class="news-post-title" href="<?php echo get_the_permalink() ?>" rel="bookmark"><?php echo get_the_title() ?></a>
-                                </br></br><p><?php echo get_the_date() ?></p><p class="news-post-excerpt"><?php echo get_the_excerpt() ?></p>
-                            </li>
-
-                        <?php
-                        }                 
-                        ?>
-                            <li>
-                                <a class="green-link" title="Nyheter" href="/Aktuellt/">Alla nyheter</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Image on the right --> 
-                    <div id="right-container">
-                        <div id="emphasized-circle">
-                            <div id="emphasized-circle-image">
-                                <img src="<?php echo plugin_dir_url( __FILE__ ) ?>images\jobbamedoss.jpg" alt="Jobba med oss" />
-                            </div>
-                            <div id="emphasized-circle-text">
-                                <div id="emphasized-circle-wrap">
-                                    <h2>Vill du jobba med oss?</h2>
-                                    <p>Att arbeta hos Beamon kan inte beskrivas, det måste upplevas.</p>
-                                    <a class="green-link" title="Läs om jobb hos oss" href="/Jobb/">Läs om jobb hos oss</a>
+                        <!-- Image on the right --> 
+                        <div class="float-right half-width">
+                            <div class="emphasized-circle">
+                                <div class="emphasized-circle-image">
+                                    <img src="<?php echo plugin_dir_url( __FILE__ ) ?>images\jobbamedoss.jpg" alt="Jobba med oss" />
+                                </div>
+                                <div class="emphasized-circle-text">
+                                    <div class="emphasized-circle-wrap">
+                                        <h2>Vill du jobba med oss?</h2>
+                                        <p>Att arbeta hos Beamon kan inte beskrivas, det måste upplevas.</p>
+                                        <a class="green-link" title="Läs om jobb hos oss" href="/Jobb/">Läs om jobb hos oss</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 
                 <?php
                 }
@@ -195,14 +194,15 @@ class List_News_Widget extends WP_Widget
                         $i++; 
                     }
                     ?>
-                    
                     </div>
                 </div>
-
                 <?php
                 }            
             } 
             wp_reset_postdata();
+            ?>
+            </div>
+        <?php
         }
     }
 }

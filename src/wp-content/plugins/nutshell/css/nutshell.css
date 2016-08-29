@@ -1,0 +1,22 @@
+#nutshell-table {
+    margin: auto;
+}
+
+.question {
+    padding: 10px;
+}
+
+.question-image {
+    float: left;
+    margin-right: 10px;
+}
+
+.bubble {
+    padding: 10px !important;
+}
+
+.question-text {
+    float: right;
+    padding-top: 20px;
+}
+

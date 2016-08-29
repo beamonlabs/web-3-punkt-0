@@ -1,0 +1,42 @@
+/* Start page widget */
+
+#expertise-min-height {
+    min-height: 380px;
+}
+
+.expertise-small-container {
+    width: 40%;
+    padding-left: 80px;
+}
+
+/* Images */
+
+.expertise-image {
+    display: inline-block;
+    margin: 20px 15px 30px;
+    position: relative;
+}
+
+/* Full page widget */
+
+.post {
+    width: 30% !important;
+}
+
+.post-list .post-row {
+    border: none;
+}
+
+.thumbnail-left {
+    float: left;
+}
+
+.post-inner {
+    float: right;
+    max-width: 260px;
+    margin-right: 10px !important;
+}
+
+.bottom-padding {
+    padding-bottom: 40px;
+}
