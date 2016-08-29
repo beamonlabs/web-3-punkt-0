@@ -60,16 +60,16 @@ class List_Colleagues_Widget extends WP_Widget
             ?>
             </select>
         </p>
-            
-        <!-- Let admin choose title -->
+
+        <!-- Let admin choose title (only for start page) -->
         <p>
-            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title' ); ?></label><br/>
+            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title (only for start page)' ); ?></label><br/>
             <input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" id="<?php echo $this->get_field_id( 'title' ); ?>" value="<?php echo $instance['title']?>" style="width: 100%">
         </p>
             
-        <!-- Let admin choose subtitle (not displayed on start page) -->
+        <!-- Let admin choose subtitle (only for start page) -->
         <p>
-            <label for="<?php echo $this->get_field_id( 'sub_tile' ); ?>"><?php _e( 'Subtitle (not displayed on start page)' ); ?></label><br/>
+            <label for="<?php echo $this->get_field_id( 'sub_tile' ); ?>"><?php _e( 'Subtitle (only for start page)' ); ?></label><br/>
             <textarea name="<?php echo $this->get_field_name( 'sub_title' ); ?>" id="<?php echo $this->get_field_id( 'sub_title' ); ?>" rows="5" style="width: 100%"><?php echo $instance['sub_title']?></textarea>
         </p>
 
@@ -100,27 +100,26 @@ class List_Colleagues_Widget extends WP_Widget
             {
             ?>
                 <div id="colleague-container">
-
+                <link href="<?php echo plugin_dir_url( __FILE__ )?>css/colleagues.css" rel="stylesheet" type="text/css" />
                 <?php
                 if ( $is_startpage )
                 {
                 ?>
-                    <link href="<?php echo plugin_dir_url( __FILE__ )?>css/colleagues_small.css" rel="stylesheet" type="text/css" />
-                    <h2 id="colleague-title"><?php echo $instance['title'] ?></h2>
-                    <a class="green-link" title="Medarbetare" href="/Beamon People/">Se alla Beamon People</a>
+                    <div class="startpage-widget grey-background">                  
+                        <h2><?php echo $instance['title'] ?></h2>
+                        <a class="green-link" title="Medarbetare" href="/Beamon People/">Se alla Beamon People</a>
+                        <div id="colleague-image-container">
                 <?php
                 }
                 else
                 {
                 ?>
-                    <link href="<?php echo plugin_dir_url( __FILE__ )?>css/colleagues_large.css" rel="stylesheet" type="text/css" />
-                    <h1 id="colleague-title"><?php echo $instance["title"] ?></h1>
-                    <p id="colleague-text"><?php $instance["sub_title"] ?></p>
+                    <div class="container-margin">
+                    <h1 class="align-center"><?php echo get_the_title(); ?></h1>
+                    <p class="half-width auto-margin align-center"><?php echo get_the_content(); ?></p>
                 <?php
                 }
-                ?>
-                
-                <div id="colleague-image-container">
+                ?>                
                 <table>
 
                 <?php
@@ -164,8 +163,8 @@ class List_Colleagues_Widget extends WP_Widget
                             ?>
                             <td class="colleague-image">
                                 <a href="">
-                                    <img src="<?php echo plugin_dir_url( __FILE__ )?>images\\<?php echo $colleague[3] ?>" alt="<?php echo $name ?>"></br>
-                                    <p><?php echo $name ?></p>
+                                    <img src="<?php echo plugin_dir_url( __FILE__ )?>images\\<?php echo $colleague[3]?>" alt="<?php echo $name ?>"></br>
+                                    <p class="align-center fat"><?php echo $name ?></p>
                                 </a>
                             </td>
                         <?php          
@@ -175,9 +174,26 @@ class List_Colleagues_Widget extends WP_Widget
                     fclose( $file );
                     ?>
                     
-                    </tr></table></div></div>
-                <?php     
+                    </tr></table>
+
+                    <!-- Needed for div end tags to be equal -->
+                    <?php
+                    if ($is_startpage)
+                    {
+                    ?>
+                        </div></div>
+                    <?php
+                    }
+                    else
+                    {
+                    ?>
+                        </div>
+                    <?php   
+                    }                     
                 }
+                ?>
+                </div>
+            <?php
             }
         }
     }

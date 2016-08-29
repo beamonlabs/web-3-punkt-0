@@ -92,6 +92,31 @@
     display: none;
 }
 
+h1 {   
+    font-size: 42px !important;
+    font-weight: 300;
+    margin: 20px 0;
+    font-family: "Open Sans", sans-serif;
+}
+
+p {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333333;
+}
+
+/* Titles on start page */
+
+h2 {
+    text-align: center;
+    font-size: 31.5px !important;
+    font-weight: 300;
+    margin: 10px 0;
+    font-family: "Open Sans", sans-serif;
+    word-wrap: break-word;
+}
+
 /* Footer */ 
 
 #footer-bottom {
@@ -100,9 +125,14 @@
 
 /* Start page */ 
 
+.startpage-widget {
+    border-bottom: 1px solid #cccccc;
+    padding: 30px 0px;
+}
+
 .home .entry.themeform {
     background: url("images/bubbles_start.png") 100% 120% no-repeat;
-    height: 300px;
+    min-height: 330px;
 }
 
 .home .entry.themeform  p {
@@ -178,7 +208,7 @@
 
 /* Image with text */
 
-#emphasized-circle {
+.emphasized-circle {
     border-radius: 1000px !important;
     overflow: hidden;
     border: solid 1px #ccc;
@@ -186,25 +216,25 @@
     width: 588px;
 }
 
-#emphasized-circle li {
+.emphasized-circle li {
     display: inline-block;
     margin: 20px 15px 30px;
     position: relative;
 }
 
-#emphasized-circle img {
+.emphasized-circle img {
     width: 100%;
     max-width: 100%;
     vertical-align: middle;
     border: 0;
 }
 
-#emphasized-circle-image {
+.emphasized-circle-image {
     height: 360px;
     overflow: hidden;  
 }
 
-#emphasized-circle-text {
+.emphasized-circle-text {
     height: 228px;
     overflow: hidden;
     font-size: 14px;
@@ -212,13 +242,13 @@
     color: #333333;
 }
 
-#emphasized-circle-wrap {
+.emphasized-circle-wrap {
     width: 350px;
     text-align: center;
     margin: auto;
 }
 
-#emphasized-circle h2 {
+.emphasized-circle h2 {
     font-weight: 300;
     font-size: 31.5px;
     line-height: 44px;
@@ -258,4 +288,48 @@
 .big {
     font-size: 30px;
     font-weight: bold;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.half-width {
+    width: 50%;
+}
+
+.auto-margin {
+    margin: auto;
+}
+
+.container-margin {
+    margin: 30px 0px 20px 0px;
+}
+
+.container-padding {
+    padding: 20px;
+}
+
+.grey-background {
+    background: #f2f2f2;
+}
+
+.fat {
+    font-weight: bold;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+a:hover {
+    color: #9EB540 !important;
 }

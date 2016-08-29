@@ -1,0 +1,19 @@
+#consultant-container {
+    min-height: 600px;
+}
+
+#consultant-min-height {
+    min-height: 600px;
+}
+
+#title {
+    padding-top: 40px;
+    line-height: 1.4em;
+    font-size: 18px;
+    color: black !important;
+    font-family: "Open Sans", sans-serif;
+}
+
+a:hover {
+    color: #9EB540 !important;
+}

@@ -62,15 +62,15 @@ class List_Expertises_Widget extends WP_Widget
             </select>
         </p>
             
-        <!-- Let admin choose title -->
+        <!-- Let admin choose title (only for start page) -->
         <p>
-            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title' ); ?></label><br/>
+            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title (only for start page)' ); ?></label><br/>
             <input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" id="<?php echo $this->get_field_id( 'title' ); ?>" value="<?php echo $instance['title']?>" style="width: 100%">
         </p>
             
-        <!-- Let admin choose sub title (only for other pages than start page) -->
+        <!-- Let admin choose sub title (only for start page) -->
         <p>
-            <label for="<?php echo $this->get_field_id( 'sub_tile' ); ?>"><?php _e( 'Sub title (not for start page)' ); ?></label><br/>
+            <label for="<?php echo $this->get_field_id( 'sub_tile' ); ?>"><?php _e( 'Sub title (only for start page)' ); ?></label><br/>
             <textarea name="<?php echo $this->get_field_name( 'sub_title' ); ?>" id="<?php echo $this->get_field_id( 'sub_title' ); ?>" rows="5" style="width: 100%"><?php echo $instance['sub_title']?></textarea>
         </p>
 
@@ -94,76 +94,67 @@ class List_Expertises_Widget extends WP_Widget
         {
             // Flag for differences between start page and other pages
             if( is_home() || is_front_page() ) { $is_startpage = TRUE; } else { $is_startpage = FALSE; }
-            ?>
-
-            <div id="expertise-container">
-
-            <?php
-            if ( $is_startpage )
-            {
-            ?>
-                <link href="<?php echo plugin_dir_url( __FILE__ )?>css/expertises_small.css" rel="stylesheet" type="text/css" />           
-            <?php
-            }
-            else
-            {
-            ?>
-                <link href="<?php echo plugin_dir_url( __FILE__ )?>css/expertises_large.css" rel="stylesheet" type="text/css" />
-                <h2 id="expertise-title"><?php echo $instance["title"] ?></h2>
-                <p id="intro-text"><?php echo $instance["sub_title"] ?></p>
-            </div> 
-    
-            <?php         
-            }
 
             // Arguments for post query
             $category_name = 'Expertises';
             $args = array( 'category_name' => $category_name );
             $the_query = new WP_Query( $args );
 
-            if( $is_startpage )
-            {            
-            ?>                
-                <div id="left-container">
-                    <div id="text-container">
-                        <h2 id="expertise-title"><?php echo $instance["title"] ?></h2>
-                        <p id="expertise-text"><?php echo $instance["sub_title"] ?></p>
-                        <a class="green-link" title="Kompetenser" href="/Vad-vi-gor/">Läs om våra kompetenser</a>
+            ?>
+            
+            <div id="expertise-container">
+            <link href="<?php echo plugin_dir_url( __FILE__ )?>css/expertises.css" rel="stylesheet" type="text/css" />
+            
+            <?php
+            if ( $is_startpage )
+            {
+            ?>  
+                <div id="expertise-min-height" class="startpage-widget">
+                    <div class="expertise-small-container float-left">
+                        <div id="text-container">
+                            <h2 class="align-left"><?php echo $instance["title"] ?></h2>
+                            <p class="align-left"><?php echo $instance["sub_title"] ?></p>
+                            <a class="green-link float-left" title="Kompetenser" href="/Vad-vi-gor/">Läs om våra kompetenser</a>
+                        </div>
+                    </div>
+                    <div class="expertise-small-container float-left">
+                        <ul>
+
+                            <?php
+                            $the_query = new WP_Query( $args );
+                            if ( $the_query->have_posts() ) 
+                            {
+                                while ( $the_query->have_posts() )
+                                {
+                                    $the_query->the_post();
+                                    ?>
+
+                                    <li class="expertise-image">
+                                        <a href="<?php echo get_the_permalink() ?>">
+                                            <div class="bubble">
+                                                <?php
+                                                echo the_post_thumbnail();
+                                                ?>
+                                            </div>   
+                                            <p><?php echo get_the_title() ?></p>                                  
+                                        </a>                           
+                                    </li>
+                                <?php                                       
+                                }
+                            }
+                            ?>
+                        </ul>
                     </div>
                 </div>
-
-                <div id="right-container">
-                    <ul>
-
-                <?php
-                $the_query = new WP_Query( $args );
-                if ( $the_query->have_posts() ) 
-                {
-                    while ( $the_query->have_posts() )
-                    {
-                        $the_query->the_post();
-                        ?>
-
-                        <li class="expertise-image">
-                            <a href="<?php echo get_the_permalink() ?>">
-                                <div class="bubble">
-                                    <?php
-                                    echo the_post_thumbnail();
-                                    ?>
-                                </div>
-                                <p><?php echo get_the_title() ?></p>
-                            </a>
-                        </li>
-                    <?php                                       
-                    }
-                }
-                ?>
-
-                </ul></div></div>
             <?php
             }
             else
             {
+            ?>
+                <h1><?php echo get_the_title(); ?></h1>
+                <p class="half-width auto-margin bottom-padding"><?php echo get_the_content(); ?></p>
+           
+                <?php
                 // Arguments for post query
                 $the_query = new WP_Query( $args );
                 if ( $the_query->have_posts() ) 
@@ -192,25 +183,27 @@ class List_Expertises_Widget extends WP_Widget
                                     </div>
                                 </article>
 
-                        <!-- Display three posts on each row -->
-                        <?php 
-                        if( $i % 3 == 0 ) 
-                        { 
-                        ?>
-                            </div>
-                            <div class="post-row">
-                        <?php
-                        } 
-
-                        $i++; 
-                    }
-                    ?>
+                                <!-- Display three posts on each row -->
+                                <?php 
+                                if( $i % 3 == 0 ) 
+                                { 
+                                ?>
+                                    </div>
+                                    <div class="post-row">
+                                <?php
+                                } 
+                                $i++; 
+                            }
+                            ?>
+                        </div>
                     </div>
-                </div>
                 <?php
                 }
                 wp_reset_postdata();
-            }                   
+            } 
+            ?>   
+            </div>   
+        <?php            
         }
     }
 }

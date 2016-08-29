@@ -1,0 +1,41 @@
+/* Start page widget */
+
+#news-startpage-widget {
+    min-height: 650px;
+    padding: 40px;
+}
+
+.news-post-title {
+    padding-top: 6px;
+    line-height: 1.4em;
+    font-size: 24.5px;
+    font-weight: bold;
+    color: black !important;
+    font-family: "Open Sans", sans-serif;
+}
+
+.news-post-excerpt {
+    max-height: 64px;
+    overflow: hidden;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: black;
+    margin: 10px 0;
+}
+
+#news_post_container li {
+    padding-bottom: 10px;
+}
+
+/* Full page widget */
+
+.pad {
+    padding: 0px 30px 0px;
+}
+
+/* Post */
+
+article {
+    margin-bottom: 40px;
+}

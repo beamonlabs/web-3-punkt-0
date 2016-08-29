@@ -63,15 +63,15 @@ class List_Projects_Widget extends WP_Widget
             </select>
         </p>
             
-        <!-- Let admin choose title -->
+        <!-- Let admin choose title (only for start page) -->
         <p>
-            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title' ); ?></label><br/>
+            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title (only for start page)' ); ?></label><br/>
             <input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" id="<?php echo $this->get_field_id( 'title' ); ?>" value="<?php echo $instance['title']?>" style="width: 100%">
         </p>
             
-        <!-- Let admin choose sub title (only for other pages than start page) -->
+        <!-- Let admin choose sub title (only for start page) -->
         <p>
-            <label for="<?php echo $this->get_field_id( 'sub_tile' ); ?>"><?php _e( 'Sub title (not for start page)' ); ?></label><br/>
+            <label for="<?php echo $this->get_field_id( 'sub_tile' ); ?>"><?php _e( 'Sub title (only for start page)' ); ?></label><br/>
             <textarea name="<?php echo $this->get_field_name( 'sub_title' ); ?>" id="<?php echo $this->get_field_id( 'sub_title' ); ?>" rows="5" style="width: 100%"><?php echo $instance['sub_title']?></textarea>
         </p>
 
@@ -102,31 +102,34 @@ class List_Projects_Widget extends WP_Widget
             {
             ?>
                 <div id="project-container">
+                    <link href="<?php echo plugin_dir_url( __FILE__ )?>css/projects.css" rel="stylesheet" type="text/css" />
 
                 <?php
                 if ( $is_startpage )
                 {
                 ?>
-                    <link href="<?php echo plugin_dir_url( __FILE__ )?>css/projects_small.css" rel="stylesheet" type="text/css" />
+                    <div class="startpage-widget grey-background">
                     <div id="project-text-container">
-                        <h2 id="project-title"><?php echo $instance["title"] ?></h2>
-                        <p id="project-text"><?php echo $instance["sub_title"] ?></p>
-                        <a class="green-link" title="Projekt" href="/Projekt/">Läs om våra projekt</a>
+                        <h2 class="align-left"><?php echo $instance["title"] ?></h2>
+                        <p class="align-left"><?php echo $instance["sub_title"] ?></p>
+                        <a class="green-link float-left" title="Projekt" href="/Projekt/">Läs om våra projekt</a>
                     </div>
+                    <div id="project-image-container-small">
                 <?php
                 }
                 else
                 {
                 ?>
                     
-                    <link href="<?php echo plugin_dir_url( __FILE__ )?>css/projects_large.css" rel="stylesheet" type="text/css" />
-                    <h1 id="project-title"><?php echo $instance["title"] ?></h1>
-                    <p id="project-text"><?php echo $instance["sub_title"] ?></p>
+                    
+                    <h1 class="align-center"><?php echo get_the_title(); ?></h1>
+                    <p class="half-width auto-margin"><?php echo get_the_content(); ?></p>
+                    <div id="project-image-container-large">
                 <?php
                 }
                 ?>
 
-                <div id="project-image-container"><table>
+                <table>
 
                 <!-- Get data from csv file -->
                 <?php
@@ -165,7 +168,7 @@ class List_Projects_Widget extends WP_Widget
                             $name = htmlentities( $project[0], ENT_QUOTES, 'ISO-8859-1' );
                             ?>
                             
-                            <td class="project-image"><a href=""><img src="<?php echo plugin_dir_url( __FILE__ )?>images\\<?php echo $project[1]?>" alt="<?php echo $name ?>"></br><p><? echo $name ?></p></a></td>       
+                            <td class="project-image"><a href=""><img src="<?php echo plugin_dir_url( __FILE__ )?>images\\<?php echo $project[1]?>" alt="<?php echo $name ?>"></br><p><?php echo $name ?></p></a></td>       
                         <?php
                         }
                     }                                           
@@ -173,7 +176,13 @@ class List_Projects_Widget extends WP_Widget
                     ?>
                     
                     </tr></table></div></div>
-                <?php           
+                    <?php      
+                    if ( $is_startpage )
+                    {
+                    ?>
+                        </div>
+                    <?php    
+                    }     
                 }
             }
         }
