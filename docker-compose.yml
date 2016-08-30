@@ -3,7 +3,7 @@ version: '2'
 services:
 
   wordpress:
-    image: beamonlabs/web3punkt0
+    image: beamonlabs/web-3-punkt-0
     ports:
       - 9090:80
     environment:
@@ -11,7 +11,7 @@ services:
     volumes_from:
       - wordpress_data
   wordpress_data:
-    image: beamonlabs/web3punkt0
+    image: beamonlabs/web-3-punkt-0
 
   mysql:
     image: mariadb
