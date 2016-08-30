@@ -5,9 +5,6 @@
 * Version: 1.0
 * Author: Alexandra Vasmatzis
 **/
-?>
-
-<?php
 class Nutshell_Widget extends WP_Widget 
 {
     function __construct()
@@ -145,9 +142,6 @@ class Nutshell_Widget extends WP_Widget
         }
     }
 }
-?>
-
-<?php
 // Register widget
 function register_nutshell_widget()
 {
