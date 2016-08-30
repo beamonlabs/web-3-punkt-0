@@ -5,9 +5,6 @@
 * Version: 1.0
 * Author: Alexandra Vasmatzis
 **/
-?>
-
-<?php
 class List_Consultant_Articles_Widget extends WP_Widget 
 {
     function __construct()
@@ -148,13 +145,10 @@ class List_Consultant_Articles_Widget extends WP_Widget
                     ?>
                 </div>
             </div>   
-            <?php        
-            }
+        <?php        
         }
     }
-    ?>
-
-<?php
+}
 // Register widget
 function register_list_consultant_widget()
 {

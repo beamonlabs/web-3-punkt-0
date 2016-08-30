@@ -5,9 +5,6 @@
 * Version: 1.0
 * Author: Alexandra Vasmatzis
 **/
-?>
-
-<?php
 class List_News_Widget extends WP_Widget 
 {
     function __construct()
@@ -206,9 +203,6 @@ class List_News_Widget extends WP_Widget
         }
     }
 }
-?>
-
-<?php
 // Register widget
 function register_list_news_widget()
 {

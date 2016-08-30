@@ -5,9 +5,6 @@
 * Version: 1.0
 * Author: Alexandra Vasmatzis
 **/
-?>
-
-<?php
 class List_Projects_Widget extends WP_Widget 
 {
     function __construct()
@@ -188,9 +185,6 @@ class List_Projects_Widget extends WP_Widget
         }
     }
 }
-?>
-
-<?php
 // Register widget
 function register_list_projects_widget()
 {
