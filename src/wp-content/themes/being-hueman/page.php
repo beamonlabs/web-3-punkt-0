@@ -18,13 +18,15 @@
 
 					<div class="clear"></div>
 
-                    <?php if( !is_home() && !is_front_page() ) { if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('page_content') ) : endif; } ?>
-				
+                    <?php if( !is_home() && !is_front_page() ) { if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('other_page') ) : endif; } ?>
+				   
                 </div><!--/.entry-->
 
 			</article>
 
-			<?php if ( hu_is_checked('page-comments') ) { comments_template('/comments.php',true); } ?>
+            <?php if( is_home() || is_front_page() ) { if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('start_page') ) : endif; } ?>
+			
+            <?php if ( hu_is_checked('page-comments') ) { comments_template('/comments.php',true); } ?>
 
 		<?php endwhile; ?>
 

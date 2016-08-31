@@ -7,20 +7,37 @@
 	// http://codex.wordpress.org/Child_Themes
 
 /**
-* Register Page Content Widget Area.
+* Register Other Page Widget Area.
 */
-function pageContentWidget_init() {
+function otherPageWidget_init() {
 
 	register_sidebar( array(
-		'name' => 'Page Content',
-		'id' => 'page_content',
-		'before_widget' => '<div id="pageContentWidget">',
+		'name' => 'Other Page',
+		'id' => 'other_page',
+		'before_widget' => '<div id="otherPageWidget">',
 		'after_widget' => '</div>',
-		'before_title' => '<h2 class="pageContentTitle">',
+		'before_title' => '<h2 class="otherPageTitle">',
 		'after_title' => '</h2>',
 	) );
 }
-add_action( 'widgets_init', 'pageContentWidget_init' );
+add_action( 'widgets_init', 'otherPageWidget_init' );
+
+/**
+* Register Start Page Widget Area.
+*/
+function startPageWidget_init() {
+
+	register_sidebar( array(
+		'name' => 'Start Page',
+		'id' => 'start_page',
+		'before_widget' => '<div id="startPageWidget">',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="startPageTitle">',
+		'after_title' => '</h2>',
+	) );
+}
+
+add_action( 'widgets_init', 'startPageWidget_init' );
 
 // Add categories for posts
 function sample_insert_category() {
