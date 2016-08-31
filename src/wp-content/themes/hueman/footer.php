@@ -3,8 +3,7 @@
     </div><!--/.container-inner-->
   </div><!--/.container-->
 
-  <footer id="footer">
-
+  <footer id="footer">    
     <?php if ( hu_is_checked('footer-ads') ) : ?>
       <?php
         ob_start();

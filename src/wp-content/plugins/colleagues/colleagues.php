@@ -106,7 +106,7 @@ class List_Colleagues_Widget extends WP_Widget
                 // Query for posts
                 $args = array( 'category_name' => $category_name, 'posts_per_page' => $post_count, 'orderby' => $order_type  );
                 ?>
-                <div class="startpage-widget grey-background">                  
+                <div class="startpage-widget grey-background align-center">                  
                     <h2><?php echo $instance['title'] ?></h2>
                     <a class="green-link" title="Medarbetare" href="/Beamon People/">Se alla Beamon People</a>
                     <div id="colleague-image-container">
