@@ -18,7 +18,7 @@ class List_Projects_Widget extends WP_Widget
         __( 'List Beamon Projects', 'Beamon' ),
 
         // Options
-        array( 'description' => __( 'Lists projects found in the specific csv file' ) )
+        array( 'description' => __( 'Lists projects' ) )
         );
     }
 
@@ -93,95 +93,75 @@ class List_Projects_Widget extends WP_Widget
             // Flag for differences between start page and other pages
             if( is_home() || is_front_page() ) { $is_startpage = TRUE; } else { $is_startpage = FALSE; }
 
-            $file_path = dirname(__FILE__) . '\csv\projects.csv';
-
-            if ( file_exists( $file_path ) )
-            {
+            $category_name = 'Projects';   
+            $order_type = 'rand'; 
             ?>
-                <div id="project-container">
-                    <link href="<?php echo plugin_dir_url( __FILE__ )?>css/projects.css" rel="stylesheet" type="text/css" />
 
-                <?php
-                if ( $is_startpage )
-                {
-                ?>
-                    <div class="startpage-widget grey-background">
-                    <div id="project-text-container">
-                        <h2 class="align-left"><?php echo $instance["title"] ?></h2>
-                        <p class="align-left"><?php echo $instance["sub_title"] ?></p>
-                        <a class="green-link float-left" title="Projekt" href="/Projekt/">Läs om våra projekt</a>
-                    </div>
-                    <div id="project-image-container-small">
-                <?php
-                }
-                else
-                {
-                ?>
-                    
-                    
-                    <h1 class="align-center"><?php echo get_the_title(); ?></h1>
-                    <p class="half-width auto-margin"><?php echo get_the_content(); ?></p>
-                    <div id="project-image-container-large">
-                <?php
-                }
-                ?>
+            <div id="project-container">
+            <link href="<?php echo plugin_dir_url( __FILE__ )?>css/projects.css" rel="stylesheet" type="text/css" />
 
+            <?php
+            if ( $is_startpage )
+            {
+                $post_count = 4;
+
+                // Query for posts
+                $args = array( 'category_name' => $category_name, 'posts_per_page' => $post_count, 'orderby' => $order_type  );
+                ?>
+                <div class="startpage-widget grey-background">
+                <div id="project-text-container">
+                    <h2 class="align-left"><?php echo $instance["title"] ?></h2>
+                    <p class="align-left"><?php echo $instance["sub_title"] ?></p>
+                    <a class="green-link float-left" title="Projekt" href="/Projekt/">Läs om våra projekt</a>
+                </div>
+                <div id="project-image-container-small">
+            <?php
+            }
+            else
+            {
+
+                $post_count = -1;
+
+                // Query for posts
+                $args = array( 'category_name' => $category_name, 'posts_per_page' => $post_count, 'orderby' => $order_type  );
+                ?>
+                <div id="project-image-container-large">
+            <?php
+            }
+            ?>
                 <table>
-
-                <!-- Get data from csv file -->
-                <?php
-                if ( ( $file = fopen( $file_path, "r" ) ) !== FALSE )
-                {
-                ?>
                     <tr>
-
-                    <?php
-                    $data = array();
-                    while ( ( $data_temp = fgetcsv( $file, 1000, ";" ) ) !== FALSE ) 
-	                {  
-                        $data[] = $data_temp;
-                    }  
-
-                    // Remove title row from xls
-                    array_shift( $data );
-
-                    if( $is_startpage )
+                    <?php                   
+                    $the_query = new WP_Query( $args );
+                    if ( $the_query->have_posts() ) 
                     {
-                        // Get 4 random projects
-                        $projects = array_rand( $data, 4 );  
-                        foreach( $projects as $project )
+                        while ( $the_query->have_posts() ) 
                         {
-                            $name = htmlentities( $data[$project][0], ENT_QUOTES, 'ISO-8859-1' );
-                            ?>
-                            
-                            <td class="project-image"><a href=""><img src="<?php echo plugin_dir_url( __FILE__ )?>images\\<?php echo $data[$project][1]?>" alt="<?php echo $name ?>"></br><p><?php echo $name ?></p></a></td>          
+                            $the_query->the_post();  
+                            ?>  
+                            <td class="project-image">
+                                <a href="<?php echo get_the_permalink() ?>">
+                                    <?php echo the_post_thumbnail(); ?>
+                                    </br><p class="fat"><?php echo get_the_title(); ?></p>
+                                </a>
+                            </td>          
                         <?php
                         }
                     }
-                    else
-                    {
-                        foreach( $data as $project )
-                        {
-                            $name = htmlentities( $project[0], ENT_QUOTES, 'ISO-8859-1' );
-                            ?>
-                            
-                            <td class="project-image"><a href=""><img src="<?php echo plugin_dir_url( __FILE__ )?>images\\<?php echo $project[1]?>" alt="<?php echo $name ?>"></br><p><?php echo $name ?></p></a></td>       
-                        <?php
-                        }
-                    }                                           
-                    fclose( $file );
-                    ?>
-                    
-                    </tr></table></div></div>
-                    <?php      
-                    if ( $is_startpage )
-                    {
-                    ?>
-                        </div>
-                    <?php    
-                    }     
-                }
-            }
+                    ?>                   
+                    </tr>
+                </table>
+                </div></div>
+                <?php      
+                if ( $is_startpage )
+                {
+                ?>
+                    </div>
+                <?php    
+                } 
+                ?> 
+                </div>   
+            <?php
         }
     }
 }

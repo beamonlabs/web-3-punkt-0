@@ -73,10 +73,7 @@ class List_Jobs_Widget extends WP_Widget
         {
         ?>
             <div id="jobs-container">
-                <link href="<?php echo plugin_dir_url( __FILE__ )?>css/jobs.css" rel="stylesheet" type="text/css" />               
-                <h1 class="align-center"><?php echo get_the_title() ?></h1>
-                <p class="half-width auto-margin"><?php echo get_the_content() ?></p>
-            
+                <link href="<?php echo plugin_dir_url( __FILE__ )?>css/jobs.css" rel="stylesheet" type="text/css" />                           
                 <?php
                 $category_name = 'Jobs';
 

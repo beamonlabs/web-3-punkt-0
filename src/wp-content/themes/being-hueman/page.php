@@ -5,9 +5,6 @@
 	<?php get_template_part('parts/page-title'); ?>
 
 	<div class="pad group">
-        
-    <!-- Only display full page widget area on other pages than startpage -->
-    <?php if( !is_home() && !is_front_page() ) { if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('page_content') ) : endif; } ?>
 
 		<?php while ( have_posts() ): the_post(); ?>
 
@@ -16,10 +13,14 @@
 				<?php get_template_part('parts/page-image'); ?>
 
 				<div class="entry themeform">
-					<?php
-                    if ( !function_exists('dynamic_sidebar') || ( is_home() || is_front_page()) ) { the_content(); }?>
+
+					<div class="page-content"><?php the_content(); ?></div>
+
 					<div class="clear"></div>
-				</div><!--/.entry-->
+
+                    <?php if( !is_home() && !is_front_page() ) { if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('page_content') ) : endif; } ?>
+				
+                </div><!--/.entry-->
 
 			</article>
 

@@ -16,7 +16,7 @@
 }
 
 .question-text {
-    float: right;
+    float: left;
     padding-top: 20px;
+    text-align: left;
 }
-

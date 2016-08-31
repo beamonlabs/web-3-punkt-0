@@ -147,59 +147,54 @@ class List_Expertises_Widget extends WP_Widget
             }
             else
             {
+            // Arguments for post query
+            $the_query = new WP_Query( $args );
+            if ( $the_query->have_posts() ) 
+            {
             ?>
-                <h1 class="align-center"><?php echo get_the_title(); ?></h1>
-                <p class="half-width auto-margin bottom-padding"><?php echo get_the_content(); ?></p>
-           
-                <?php
-                // Arguments for post query
-                $the_query = new WP_Query( $args );
-                if ( $the_query->have_posts() ) 
-                {
-                ?>
-                    <div class="post-list group">
-                        <div class="post-row">
-                            <?php
-                            $i = 1; 
-                            while ( $the_query->have_posts() ) 
-                            {
-                                $the_query->the_post();
-                                ?>
-                                            
-                                <article class="group post type-post status-publish format-standard hentry">
-                                    <div class="thumbnail-left bubble">
-                                        <?php
-                                        echo the_post_thumbnail();
-                                        ?>
-                                    </div>
-                                    <div class="post-inner post-hover">
-                                        <a class="post-title" href="<?php echo get_the_permalink() ?>" rel="bookmark"><?php echo get_the_title() ?></a></br>
-                                        <div>
-                                            <p><?php echo get_the_content() ?></p>
-                                        </div>
-                                    </div>
-                                </article>
-
-                                <!-- Display three posts on each row -->
-                                <?php 
-                                if( $i % 3 == 0 ) 
-                                { 
-                                ?>
-                                    </div>
-                                    <div class="post-row">
-                                <?php
-                                } 
-                                $i++; 
-                            }
+                <div class="post-list group">
+                    <div class="post-row">
+                        <?php
+                        $i = 1; 
+                        while ( $the_query->have_posts() ) 
+                        {
+                            $the_query->the_post();
                             ?>
-                        </div>
+                                            
+                            <article class="group post type-post status-publish format-standard hentry">
+                                <div class="thumbnail-left bubble">
+                                    <?php
+                                    echo the_post_thumbnail();
+                                    ?>
+                                </div>
+                                <div class="post-inner post-hover">
+                                    <a class="post-title" href="<?php echo get_the_permalink() ?>" rel="bookmark"><?php echo get_the_title() ?></a></br>
+                                    <div>
+                                        <p><?php echo get_the_content() ?></p>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Display three posts on each row -->
+                            <?php 
+                            if( $i % 3 == 0 ) 
+                            { 
+                            ?>
+                                </div>
+                                <div class="post-row">
+                            <?php
+                            } 
+                            $i++; 
+                        }
+                        ?>
                     </div>
+                </div>
                 <?php
                 }
-                wp_reset_postdata();
+            wp_reset_postdata();
             } 
             ?>   
-            </div>   
+        </div>   
         <?php            
         }
     }

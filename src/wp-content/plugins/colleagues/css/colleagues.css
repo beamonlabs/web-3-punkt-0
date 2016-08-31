@@ -21,3 +21,7 @@
 .colleague-image p {
     margin-top: -10px;
 }
+
+td {
+    border-bottom: none !important;
+}

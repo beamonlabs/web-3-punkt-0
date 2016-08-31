@@ -82,7 +82,7 @@ class Nutshell_Widget extends WP_Widget
             <div id="nutshell-container">
             <link href="<?php echo plugin_dir_url( __FILE__ )?>css/nutshell.css" rel="stylesheet" type="text/css" />
             <div class="container-padding grey-background">               
-                <h2><?php echo $instance['title'] ?></h2>
+                <h2 class="align-center fat"><?php echo $instance['title'] ?></h2>
                     
                 <?php                   
                 $category_name = 'Nutshell';  
