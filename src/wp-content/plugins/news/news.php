@@ -18,7 +18,7 @@ class List_News_Widget extends WP_Widget
         __( 'List Beamon News', 'Beamon' ),
 
         // Options
-        array( 'description' => __( 'Lists latest news' ) )
+        array( 'description' => __( 'Lists news' ) )
         );
     }
 
@@ -121,8 +121,17 @@ class List_News_Widget extends WP_Widget
                                 ?>
 
                                 <li>
-                                    <a class="news-post-title" href="<?php echo get_the_permalink() ?>" rel="bookmark"><?php echo get_the_title() ?></a>
-                                    </br></br><p><?php echo get_the_date() ?></p><p class="news-post-excerpt"><?php echo get_the_excerpt() ?></p>
+                                    <article>
+                                        <a class="post-title" href="<?php echo get_the_permalink() ?>" rel="bookmark"><?php echo get_the_title() ?></a>
+                                        </br>
+                                        </br>
+                                        <div class="published">
+                                            <p><?php echo get_the_date() ?></p>
+                                        </div>
+                                        <div class="entry excerpt">
+                                            <p><?php echo get_the_excerpt() ?></p>
+                                        </div>
+                                    </article>
                                 </li>
 
                             <?php

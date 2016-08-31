@@ -18,7 +18,7 @@ class List_Colleagues_Widget extends WP_Widget
         __( 'List Beamon Colleagues', 'Beamon' ),
 
         // Options
-        array( 'description' => __( 'Lists colleagues found in csv file - should be changed to load the information from google spreadsheet' ) )
+        array( 'description' => __( 'Lists colleagues - should be changed to load the information from google spreadsheet' ) )
         );
     }
 
@@ -91,107 +91,78 @@ class List_Colleagues_Widget extends WP_Widget
             // Flag for differences between start page and other pages
             if( is_home() || is_front_page() ) { $is_startpage = TRUE; } else { $is_startpage = FALSE; }
 
-            $file_path = dirname(__FILE__) . '\csv\colleagues.csv';
-
-            if ( file_exists( $file_path) )
-            {
+            $category_name = 'Colleagues';   
+            $order_type = 'rand'; 
             ?>
-                <div id="colleague-container">
-                <link href="<?php echo plugin_dir_url( __FILE__ )?>css/colleagues.css" rel="stylesheet" type="text/css" />
+
+            <div id="colleague-container">
+            <link href="<?php echo plugin_dir_url( __FILE__ )?>css/colleagues.css" rel="stylesheet" type="text/css" />
+
+            <?php
+            if ( $is_startpage )
+            {
+                $post_count = 12;
+
+                // Query for posts
+                $args = array( 'category_name' => $category_name, 'posts_per_page' => $post_count, 'orderby' => $order_type  );
+                ?>
+                <div class="startpage-widget grey-background">                  
+                    <h2><?php echo $instance['title'] ?></h2>
+                    <a class="green-link" title="Medarbetare" href="/Beamon People/">Se alla Beamon People</a>
+                    <div id="colleague-image-container">
+            <?php
+            }
+            else
+            {
+                $post_count = -1;
+
+                // Query for posts
+                $args = array( 'category_name' => $category_name, 'posts_per_page' => $post_count, 'orderby' => $order_type  );             
+                ?>
+                <div class="container-margin">
+            <?php
+            }
+            ?>                
+            <table>
+                <tr>
+                <?php                   
+                $the_query = new WP_Query( $args );
+                if ( $the_query->have_posts() ) 
+                {
+                    while ( $the_query->have_posts() ) 
+                    {
+                        $the_query->the_post();  
+                        ?>                            
+                        <td class="colleague-image">
+                            <a href="<?php echo get_the_permalink() ?>">
+                                <?php echo the_post_thumbnail(); ?>
+                                </br><p class="fat"><?php echo get_the_title(); ?></p>
+                            </a>    
+                        </td>                            
+                    <?php
+                    }
+                }
+                ?>
+                    
+                </tr></table>
+
+                <!-- Needed for div end tags to be equal -->
                 <?php
-                if ( $is_startpage )
+                if ($is_startpage)
                 {
                 ?>
-                    <div class="startpage-widget grey-background">                  
-                        <h2><?php echo $instance['title'] ?></h2>
-                        <a class="green-link" title="Medarbetare" href="/Beamon People/">Se alla Beamon People</a>
-                        <div id="colleague-image-container">
+                    </div></div>
                 <?php
                 }
                 else
                 {
                 ?>
-                    <div class="container-margin">
-                    <h1 class="align-center"><?php echo get_the_title(); ?></h1>
-                    <p class="half-width auto-margin align-center"><?php echo get_the_content(); ?></p>
-                <?php
-                }
-                ?>                
-                <table>
-
-                <?php
-                /* Get data from csv file */
-                if ( ( $file = fopen( $file_path, "r" ) ) !== FALSE )
-                {
+                    </div>
+                <?php   
+                }                     
                 ?>
-                    <tr>
-
-                    <?php
-                    $data = array();
-                    while ( ( $data_temp = fgetcsv( $file, 1000, ";" ) ) !== FALSE ) 
-	                {  
-                        $data[] = $data_temp;
-                    }  
-
-                    // Remove title row from csv
-                    array_shift( $data );
-
-                    if( $is_startpage )
-                    {
-                        // Get 12 random colleagues
-                        $colleagues = array_rand( $data, 12 );  
-                        foreach( $colleagues as $colleague )
-                        {
-                            $name = htmlentities( $data[$colleague][0], ENT_QUOTES, 'ISO-8859-1' );
-                            ?>                            
-                            <td class="colleague-image">
-                                <a href="">
-                                    <img src="<?php echo plugin_dir_url( __FILE__ )?>images\\<?php echo $data[$colleague][3]?>" alt="<?php echo $name ?>"></br><?php echo $name ?>
-                                </a>
-                            </td>
-                        <?php
-                        }
-                    }
-                    else
-                    {
-                        foreach( $data as $colleague )
-                        {
-                            $name = htmlentities( $colleague[0], ENT_QUOTES, 'ISO-8859-1' );
-                            ?>
-                            <td class="colleague-image">
-                                <a href="">
-                                    <img src="<?php echo plugin_dir_url( __FILE__ )?>images\\<?php echo $colleague[3]?>" alt="<?php echo $name ?>"></br>
-                                    <p class="align-center fat"><?php echo $name ?></p>
-                                </a>
-                            </td>
-                        <?php          
-                        }
-                    }
-                                             
-                    fclose( $file );
-                    ?>
-                    
-                    </tr></table>
-
-                    <!-- Needed for div end tags to be equal -->
-                    <?php
-                    if ($is_startpage)
-                    {
-                    ?>
-                        </div></div>
-                    <?php
-                    }
-                    else
-                    {
-                    ?>
-                        </div>
-                    <?php   
-                    }                     
-                }
-                ?>
-                </div>
+            </div>
             <?php
-            }
         }
     }
 }

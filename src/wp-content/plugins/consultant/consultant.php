@@ -99,7 +99,7 @@ class List_Consultant_Articles_Widget extends WP_Widget
                                         ?>
                     
                                         <p id="title" class="fat">"<?php echo get_the_title() ?>"</p></br>
-                                        <p><?php echo get_the_date() ?>, <?php echo $firsttag ?></p>
+                                        <p><?php echo get_the_date() ?>, <?php echo $firsttag ?></p></br>
                                         <a class="green-link" title="Läs artikeln" href="<?php echo get_the_permalink() ?>">Läs artikeln</a>
                                     </div>
                                 </div>
@@ -128,12 +128,14 @@ class List_Consultant_Articles_Widget extends WP_Widget
                                     }
                                 }
                                 ?>
-                    
                                 <li class="align-left">
-                                    <a href="<?php echo get_the_permalink() ?>" rel="bookmark"><?php get_the_title() ?></a>
-                                    </br></br>
-                                    <p class="fat"><?php echo get_the_date() ?>, <?php echo $firsttag ?></p>
-                                    <p><?php echo get_the_excerpt() ?></p>
+                                    <article>
+                                        <a class="post-title" href="<?php echo get_the_permalink() ?>" rel="bookmark"><?php echo get_the_title() ?></a>                                 
+                                        </br>
+                                        </br>
+                                        <div class="published"></div><p><?php echo get_the_date() ?>, <?php echo $firsttag ?></p>
+                                        <p class="consultant-post-excerpt"><?php echo get_the_excerpt() ?></p>
+                                    </article>
                                 </li>
                             <?php
                             }      

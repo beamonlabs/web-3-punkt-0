@@ -78,5 +78,27 @@ function sample_insert_category() {
 		    )
 	    );
     }
+
+    if(!term_exists('colleagues')) {
+	    wp_insert_term(
+		    'Colleagues',
+		    'category',
+		    array(
+			    'description'	=> 'For posts of type "Colleagues".',
+			    'slug' 		=> 'colleagues'
+		    )
+	    );
+    }
+
+    if(!term_exists('projects')) {
+	    wp_insert_term(
+		    'Projects',
+		    'category',
+		    array(
+			    'description'	=> 'For posts of type "Projects".',
+			    'slug' 		=> 'projects'
+		    )
+	    );
+    }
 }
 add_action( 'after_setup_theme', 'sample_insert_category' );
