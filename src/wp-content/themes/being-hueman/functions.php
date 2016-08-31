@@ -67,5 +67,16 @@ function sample_insert_category() {
 		    )
 	    );
     }
+
+    if(!term_exists('nutshell')) {
+	    wp_insert_term(
+		    'Nutshell',
+		    'category',
+		    array(
+			    'description'	=> 'For posts of type "Nutshell".',
+			    'slug' 		=> 'nutshell'
+		    )
+	    );
+    }
 }
 add_action( 'after_setup_theme', 'sample_insert_category' );

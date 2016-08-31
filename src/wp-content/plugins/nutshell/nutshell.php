@@ -83,58 +83,43 @@ class Nutshell_Widget extends WP_Widget
             <link href="<?php echo plugin_dir_url( __FILE__ )?>css/nutshell.css" rel="stylesheet" type="text/css" />
             <div class="container-padding grey-background">               
                 <h2><?php echo $instance['title'] ?></h2>
-                    <?php
-                    $file_path = dirname(__FILE__) . '\csv\nutshell.csv';
+                    
+                <?php                   
+                $category_name = 'Nutshell';  
+                $post_count = 3; 
+                $order_type = 'rand'; 
 
-                    if ( file_exists( $file_path) )
-                    {
-                    ?>                  
-                        <table id="nutshell-table">
-                            <?php
-                            /* Get data from csv file */
-                            if ( ( $file = fopen( $file_path, "r" ) ) !== FALSE )
+                // Query for posts
+                $args = array( 'category_name' => $category_name, 'posts_per_page' => $post_count, 'orderby' => $order_type  );
+                $the_query = new WP_Query( $args );
+                if ( $the_query->have_posts() ) 
+                {
+                ?>                 
+                    <table id="nutshell-table"> 
+                        <tr>                      
+                            <?php        
+                            $i = 1; 
+                            // query 3 random posts
+                            while ( $the_query->have_posts() ) 
                             {
-                            ?>
-                                <tr>
-                                    <?php
-                                    $data = array();
-                                    while ( ( $data_temp = fgetcsv( $file, 1000, ";" ) ) !== FALSE ) 
-	                                {  
-                                        $data[] = $data_temp;
-                                    }  
-
-                                    // Remove title row from csv
-                                    array_shift( $data );
-
-                                    // Get 3 random questions
-                                    $questions = array_rand( $data, 3 );  
-                                    foreach( $questions as $question )
-                                    {
-                                        $q = htmlentities( $data[$question][0], ENT_QUOTES, 'ISO-8859-1' );
-                                        $a = htmlentities( $data[$question][1], ENT_QUOTES, 'ISO-8859-1' );
-                                        ?>    
-                                                    
-                                        <td class="question">
-                                            <div class="question-image bubble">
-                                                <img src="<?php echo plugin_dir_url( __FILE__ )?>images\<?php echo $data[$question][2]?>" alt="<?php echo $question ?>">
-                                            </div>
-                                            <div class="question-text">
-                                                <p><?php echo $q ?></p>
-                                                <p class="big"><?php echo $a ?></p>
-                                            </div>
-                                        </td>
-                                    <?php
-                                    }
-                                    ?>
-                                </tr>
-
+                            $the_query->the_post();  
+                            ?>                    
+                                <td class="question">
+                                    <div class="question-image bubble">
+                                        <?php echo the_post_thumbnail(); ?>
+                                    </div>
+                                    <div class="question-text">
+                                        <p><?php echo get_the_title() ?></p>
+                                        <p class="big"><?php echo get_the_excerpt() ?></p>
+                                    </div>
+                                </td>
                             <?php
-                            fclose( $file );
                             }
                             ?>
-                        </table>
-                    <?php          
-                    } 
+                        </tr>
+                    </table>
+                <?php          
+                } 
                 ?>
             </div> 
         </div>                                     

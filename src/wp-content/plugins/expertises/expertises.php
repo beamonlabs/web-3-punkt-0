@@ -148,7 +148,7 @@ class List_Expertises_Widget extends WP_Widget
             else
             {
             ?>
-                <h1><?php echo get_the_title(); ?></h1>
+                <h1 class="align-center"><?php echo get_the_title(); ?></h1>
                 <p class="half-width auto-margin bottom-padding"><?php echo get_the_content(); ?></p>
            
                 <?php
