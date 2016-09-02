@@ -30,6 +30,7 @@ class List_Projects_Widget extends WP_Widget
             $select = esc_attr( $instance['select'] );
             $title = esc_attr( $instance['title'] );
             $sub_title = esc_attr( $instance['sub_title'] );
+            $link_page = esc_attr( $instance['link_page'] );
 
         }
         else
@@ -37,6 +38,7 @@ class List_Projects_Widget extends WP_Widget
             $select = '';
             $title = '';
             $sub_title = '';
+            $link_page = '';
         }
 
         ?>
@@ -72,6 +74,30 @@ class List_Projects_Widget extends WP_Widget
             <textarea name="<?php echo $this->get_field_name( 'sub_title' ); ?>" id="<?php echo $this->get_field_id( 'sub_title' ); ?>" rows="5" style="width: 100%"><?php echo $instance['sub_title']?></textarea>
         </p>
 
+        <!-- Let admin decide which page the link should go to -->
+        <p>
+            <label for="<?php echo $this->get_field_id( 'link_page' ); ?>"><?php _e( 'Select page for link (only for start page)', 'wp_widget_plugin' ); ?></label><br/>          
+            <select name="<?php echo $this->get_field_name( 'link_page' ); ?>" id="<?php echo $this->get_field_id( 'link_page' ); ?>">
+            <?php
+                $pages = get_pages();
+                foreach ( $pages as $page ) 
+                {
+                    $option = '<option value="' . $page->ID . '"';
+                    $option .= selected( $instance['link_page'], $page->ID );
+                    $option .= '>' . $page->post_title;
+                    $option .= '</option>';
+                    echo $option;
+                }
+            ?>
+            </select>
+        </p>
+
+        <!-- Let admin choose link text -->
+        <p>
+            <label for="<?php echo $this->get_field_id( 'link_text' ); ?>"><?php _e( 'Select text for link (only for start page)' ); ?></label><br/>
+            <input type="text" name="<?php echo $this->get_field_name( 'link_text' ); ?>" id="<?php echo $this->get_field_id( 'link_text' ); ?>" value="<?php echo $instance['link_text']?>" style="width: 100%">
+        </p>
+
     <?php
     }
     
@@ -82,6 +108,8 @@ class List_Projects_Widget extends WP_Widget
         $instance['select'] = strip_tags( $new_instance['select'] );
         $instance['title'] = strip_tags( $new_instance['title'] );
         $instance['sub_title'] = strip_tags( $new_instance['sub_title'] );
+        $instance['link_page'] = strip_tags( $new_instance['link_page'] );
+        $instance['link_text'] = strip_tags( $new_instance['link_text'] );
         return $instance;
     }
 
@@ -109,17 +137,11 @@ class List_Projects_Widget extends WP_Widget
                 $args = array( 'category_name' => $category_name, 'posts_per_page' => $post_count, 'orderby' => $order_type  );
                 ?>
                 <div class="startpage-widget grey-background">
-                <div id="project-text-container">
-                    <h2 class="align-left"><?php echo $instance["title"] ?></h2>
-                    <p class="align-left"><?php echo $instance["sub_title"] ?></p>
-                    <a class="green-link float-left" title="Projekt" href="/Projekt/">Läs om våra projekt</a>
-                </div>
-                <div id="project-image-container-small">
+                    <div id="project-image-container-small">
             <?php
             }
             else
             {
-
                 $post_count = -1;
 
                 // Query for posts
@@ -151,12 +173,18 @@ class List_Projects_Widget extends WP_Widget
                     ?>                   
                     </tr>
                 </table>
-                </div></div>
+                </div>
                 <?php      
                 if ( $is_startpage )
                 {
                 ?>
+                    <div id="project-text-container">
+                        <h2 class="align-left"><?php echo $instance["title"] ?></h2>
+                        <p class="align-left"><?php echo $instance["sub_title"] ?></p>
+                        <a class="green-link float-left" href="<?php echo get_page_link( $instance['link_page'] ); ?>"><?php echo $instance['link_text'] ?></a>
                     </div>
+                    <div class="clear-both"></div>
+                </div>
                 <?php    
                 } 
                 ?> 

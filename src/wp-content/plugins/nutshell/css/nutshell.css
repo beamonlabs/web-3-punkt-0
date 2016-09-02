@@ -1,5 +1,15 @@
+#nutshell-container {
+    border-top: 1px solid #cccccc;
+    min-height: 200px;
+}
+
 #nutshell-table {
     margin: auto;
+}
+
+#nutshell-container h2 {
+    margin: 0px;
+    padding-top: 20px;
 }
 
 .question {
@@ -19,4 +29,9 @@
     float: left;
     padding-top: 20px;
     text-align: left;
+}
+
+.answer {
+    font-size: 30px;
+    font-weight: bold;
 }

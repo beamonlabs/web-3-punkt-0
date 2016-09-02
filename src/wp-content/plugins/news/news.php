@@ -121,7 +121,7 @@ class List_News_Widget extends WP_Widget
                                 ?>
 
                                 <li>
-                                    <article>
+                                    <article class="widget-article">
                                         <a class="post-title" href="<?php echo get_the_permalink() ?>" rel="bookmark"><?php echo get_the_title() ?></a>
                                         </br>
                                         </br>
@@ -165,7 +165,7 @@ class List_News_Widget extends WP_Widget
                 else
                 {
                 ?>
-                    <div class="post-list group">
+                    <div class="post-list group post-margin">
                         <div class="post-row">
 
                             <?php
@@ -175,7 +175,7 @@ class List_News_Widget extends WP_Widget
                                 $the_query->the_post();
                                 ?>
                                             
-                                <article class="group post type-post status-publish format-standard hentry">
+                                <article class="group post type-post status-publish format-standard hentry widget-article">
                                     <div class="post-inner post-hover">
                                         <a class="post-title" href="<?php echo get_the_permalink() ?>" rel="bookmark"><?php echo get_the_title() ?></a></br></br>
                                         <div class="published">

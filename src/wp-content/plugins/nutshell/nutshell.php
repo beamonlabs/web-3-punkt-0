@@ -79,10 +79,9 @@ class Nutshell_Widget extends WP_Widget
         if( is_page( $instance['select'] ) )
         {
         ?>
-            <div id="nutshell-container">
-            <link href="<?php echo plugin_dir_url( __FILE__ )?>css/nutshell.css" rel="stylesheet" type="text/css" />
-            <div class="container-padding grey-background">               
-                <h2 class="align-center fat"><?php echo $instance['title'] ?></h2>
+            <div id="nutshell-container" class="grey-background">
+            <link href="<?php echo plugin_dir_url( __FILE__ )?>css/nutshell.css" rel="stylesheet" type="text/css" />             
+                <h2 class="align-center"><?php echo $instance['title'] ?></h2>
                     
                 <?php                   
                 $category_name = 'Nutshell';  
@@ -110,7 +109,7 @@ class Nutshell_Widget extends WP_Widget
                                     </div>
                                     <div class="question-text">
                                         <p><?php echo get_the_title() ?></p>
-                                        <p class="big"><?php echo get_the_excerpt() ?></p>
+                                        <p class="answer"><?php echo get_the_excerpt() ?></p>
                                     </div>
                                 </td>
                             <?php
@@ -121,7 +120,6 @@ class Nutshell_Widget extends WP_Widget
                 <?php          
                 } 
                 ?>
-            </div> 
         </div>                                     
         <?php     
         }

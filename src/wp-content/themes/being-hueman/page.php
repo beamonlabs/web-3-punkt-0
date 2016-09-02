@@ -16,15 +16,11 @@
 
 					<div class="page-content"><?php the_content(); ?></div>
 
-					<div class="clear"></div>
-
-                    <?php if( !is_home() && !is_front_page() ) { if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('other_page') ) : endif; } ?>
+					<div class="clear"></div>                 
 				   
                 </div><!--/.entry-->
 
 			</article>
-
-            <?php if( is_home() || is_front_page() ) { if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('start_page') ) : endif; } ?>
 			
             <?php if ( hu_is_checked('page-comments') ) { comments_template('/comments.php',true); } ?>
 
@@ -33,6 +29,10 @@
 	</div><!--/.pad-->
 
 </section><!--/.content-->
+
+<?php if( !is_home() && !is_front_page() ) { if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('other_page') ) : endif; } ?>
+
+<?php if( is_home() || is_front_page() ) { if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('start_page') ) : endif; } ?>
 
 <?php get_sidebar(); ?>
 
