@@ -1,4 +1,10 @@
-/* Start page widget */
+.home #news-container {
+    margin: 0px;
+}
+
+#news-container {
+    margin: 40px;
+}
 
 #news-startpage-widget {
     min-height: 650px;
@@ -9,8 +15,10 @@
     padding-bottom: 10px;
 }
 
-/* Post */
+.post-margin {
+    padding: 40px;
+}
 
-article {
-    margin-bottom: 40px;
+.pad {
+    padding: 0px;
 }

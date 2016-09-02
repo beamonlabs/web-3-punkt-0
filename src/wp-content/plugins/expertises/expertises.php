@@ -133,7 +133,7 @@ class List_Expertises_Widget extends WP_Widget
                                                 echo the_post_thumbnail();
                                                 ?>
                                             </div>   
-                                            <p><?php echo get_the_title() ?></p>                                  
+                                            <p class="align-center"><?php echo get_the_title() ?></p>                                  
                                         </a>                           
                                     </li>
                                 <?php                                       

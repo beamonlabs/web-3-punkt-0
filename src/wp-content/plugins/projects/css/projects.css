@@ -2,13 +2,13 @@
 
 #project-image-container-small {
     padding-left: 70px;
-    width: 75%;
+    float: left;    
 }
 
 #project-text-container{
-    float: right; 
-    width: 25%; 
-    padding-right: 70px; 
+    padding-right: 60px;
+    float: right;
+    width: 25%;
 }
 
 .project-image {
@@ -44,5 +44,5 @@
 
 #project-image-container-large {
     margin: auto;
-    width: 100%;
+    width: 90%;
 }

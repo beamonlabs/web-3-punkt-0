@@ -129,7 +129,7 @@ class List_Consultant_Articles_Widget extends WP_Widget
                                 }
                                 ?>
                                 <li class="align-left">
-                                    <article>
+                                    <article class="widget-article">
                                         <a class="post-title" href="<?php echo get_the_permalink() ?>" rel="bookmark"><?php echo get_the_title() ?></a>                                 
                                         </br>
                                         </br>

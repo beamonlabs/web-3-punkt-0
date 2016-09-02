@@ -1,6 +1,7 @@
 #colleague-image-container {
     margin: auto;
     width: 90%;
+    padding-bottom: 40px;
 }
 
 .colleague-image {

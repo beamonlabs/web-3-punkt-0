@@ -14,10 +14,6 @@
     font-family: "Open Sans", sans-serif;
 }
 
-a:hover {
-    color: #9EB540 !important;
-}
-
 .consultant-post-title {
     padding-top: 6px;
     line-height: 1.4em;
@@ -36,3 +32,4 @@ a:hover {
     color: black;
     margin: 10px 0;
 }
+
