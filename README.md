@@ -18,14 +18,12 @@ Det finns sju olika typer av kategorier att välja på när man skapar ett inlä
 Beroende på kategori som inlägget har är det synligt på olika platser. "Nutshell", "Projects" samt "Colleagues" hämtar poster slumpmässigt.
 
 Lite att fixa:
+- Skapa någon typ av mall med ikoner för inlägg för att förenkla när man ska skapar en ny Beam.
 - Data för Beamon People och Projekt ska hämtas dynamiskt från Google Spreadsheets
-- Widget admin settings dynamiska beroende på vilken widget area som widgeten är placerad i
-- Viss text/länkar är i nuläget statiska
+- Widget admin settings dynamiska (gömmas/synnas) beroende på vilken widget area som widgeten är placerad i
+- Vissa länkar/länktexter är i nuläget statiska
 - Responsiv design
-- Valbar bild i jobb inlägg
 - Sidomeny i nyheterna så man enkelt kan gå till annan nyhet
 - Välja Beam/Projekt att läsa om på Beamon People/Projekt sidan med hjälp av Knockout.js?
-- Visa bild för inläggen på sidan Vad vi gör
-- Ändra Konsulten har ordet enligt kravbeskrivning
 - Se kravbeskrivning
 
