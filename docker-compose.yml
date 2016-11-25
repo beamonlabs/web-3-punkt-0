@@ -1,24 +1,26 @@
 version: '2'
 
 services:
-
-  wordpress:
+  web30:
     image: beamonlabs/web-3-punkt-0
     ports:
       - 9090:80
     environment:
       WORDPRESS_DB_PASSWORD: password
-    volumes_from:
-      - wordpress_data
-  wordpress_data:
-    image: beamonlabs/web-3-punkt-0
 
   mysql:
     image: mariadb
     environment:
       MYSQL_ROOT_PASSWORD: password
-    volumes_from:
-      - mysql_data
+    volumes:
+      - web30_data:/var/lib/mysql
 
-  mysql_data:
-    image: mariadb
+volumes:
+  web30_data:
+    external: true
+
+networks:
+  default:
+    external:
+      name: env_dmz
+

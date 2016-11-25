@@ -27,3 +27,14 @@ Lite att fixa:
 - Välja Beam/Projekt att läsa om på Beamon People/Projekt sidan med hjälp av Knockout.js?
 - Se kravbeskrivning
 
+
+## wordpress config
+```
+MariaDB [wordpress]> update wp_options set option_value='http://labs.beamonpeople.se:9090' where option_name='siteurl';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [wordpress]> update wp_options set option_value='http://labs.beamonpeople.se:9090' where option_name='home';   
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+```
